@@ -22,5 +22,9 @@ import { ERoutes } from '@/router/routes.ts'
     <app-app-section title="Дерево">
       <app-button text="Перейти" :type="ButtonTypes.Link" :href="ERoutes.Tree" />
     </app-app-section>
+
+    <app-app-section title="Граф">
+      <app-button text="Перейти" :type="ButtonTypes.Link" :href="ERoutes.Graph" />
+    </app-app-section>
   </div>
 </template>

@@ -3,4 +3,5 @@ export const enum ERoutes {
   Stack = '/stack',
   Queue = '/queue',
   Tree = '/tree',
+  Graph = '/graph'
 }
