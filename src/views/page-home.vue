@@ -26,5 +26,9 @@ import { ERoutes } from '@/router/routes.ts'
     <app-app-section title="Граф">
       <app-button text="Перейти" :type="ButtonTypes.Link" :href="ERoutes.Graph" />
     </app-app-section>
+
+    <app-app-section title="Множество">
+      <app-button text="Перейти" :type="ButtonTypes.Link" :href="ERoutes.Set" />
+    </app-app-section>
   </div>
 </template>

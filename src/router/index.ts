@@ -35,6 +35,11 @@ const router = createRouter({
       name: 'graph',
       component: () => import('../views/page-graph.vue'),
     },
+    {
+      path: ERoutes.Set,
+      name: 'set',
+      component: () => import('../views/page-set.vue'),
+    },
   ],
 })
 
