@@ -1,0 +1,38 @@
+@use "reset" as *;
+@use "colors" as *;
+@use "breakpoints" as *;
+@use "container" as *;
+@use "fonts" as *;
+
+body {
+  background-color: $app-background;
+  font-family: $font-main;
+  color: $color-black-text;
+  font-size: 20px;
+
+  @include tablet {
+    font-size: 14px;
+  }
+
+  &.overflow-hidden {
+    padding-right: 5px;
+    overflow: hidden;
+  }
+}
+
+* {
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: $color-main-text;
+  }
+}

@@ -1,0 +1,15 @@
+@mixin font($fontFamily: '', $fontFolderName: '', $fontWeight: 400, $fontStyle: normal, $fontDisplay: swap) {
+  @font-face {
+    font-family: $fontFamily;
+    src: url('../fonts/#{$fontFolderName}/#{$fontWeight}.woff2') format('woff2'),
+    url('../fonts/#{$fontFolderName}/#{$fontWeight}.woff') format('woff');
+    font-style: $fontStyle;
+    font-weight: $fontWeight;
+    font-display: $fontDisplay;
+  }
+}
+
+//@include font('Gilroy', 'Gilroy', 600);
+//@include font('Gilroy', 'Gilroy', 700);
+
+$font-main: 'Arial', sans-serif !default;
