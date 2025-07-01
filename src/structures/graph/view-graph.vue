@@ -1,6 +1,6 @@
 <template>
   <app-app-section title="Граф">
-<friend-graph-d3 />
+    <friend-graph-d3 />
   </app-app-section>
 </template>
 

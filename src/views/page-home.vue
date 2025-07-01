@@ -7,6 +7,9 @@ import { ERoutes } from '@/router/routes.ts'
 
 <template>
   <div>
+    <app-app-section title="Массив множество">
+      <app-button text="Перейти" :type="ButtonTypes.Link" :href="ERoutes.Array" />
+    </app-app-section>
     <app-app-section title="Связный список">
       <app-button text="Перейти" :type="ButtonTypes.Link" :href="ERoutes.List" />
     </app-app-section>
