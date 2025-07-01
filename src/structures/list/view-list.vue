@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import AppSection from '@/components/section/app-section.vue'
-import AppCode from '@/components/ui/app-code.vue'
-import { ref } from 'vue'
+import MusicPlayer from '@/structures/list/examples/music-player.vue'
 
-const code = ref(`console.log('Hello, world!')`)
 </script>
 
 <template>
@@ -14,12 +12,14 @@ const code = ref(`console.log('Hello, world!')`)
       могут быть использованы для создания простых приложений, таких как музыкальный плеер.
     </p>
 
-    <app-code :code="code" />
+  <music-player />
 
+    Проблемы
     <p>
       Автоматическая очистка сборщиком мусора при двусвязном кольцевом списке. Алгоритм не понимает
       как удалить связный список, т.к. Все элементы ссылаются друг на друга (кольцевая зависимость)
       Решение: Ключевое слово WeakRef
     </p>
+
   </app-section>
 </template>
