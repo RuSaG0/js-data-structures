@@ -2,6 +2,7 @@
 import AppCode from '@/components/ui/app-code.vue'
 import AppAppSection from '@/components/section/app-section.vue'
 import { ref } from 'vue'
+import FileUploadedQueue from '@/structures/queue/examples/file-uploaded-queue.vue'
 
 const code = ref(`console.log('Hello, world!')`)
 </script>
@@ -21,6 +22,8 @@ const code = ref(`console.log('Hello, world!')`)
       Очередь может быть использована для управления порядком загрузки файлов, обеспечивая, что
       файлы загружаются в том порядке, в котором они были добавлены.
     </p>
+
+    <file-uploaded-queue />
 
     <h2>Проблемы очередей</h2>
     <p>
