@@ -19,6 +19,17 @@ export class Stack<T> {
     return [...this.items];
   }
 
+  size(): number {
+    return this.items.length;
+  }
+
+  get(index: number): T | undefined {
+    if (index >= 0 && index < this.items.length) {
+      return this.items[index];
+    }
+    return undefined;
+  }
+
   isEmpty(): boolean {
     return this.items.length === 0;
   }
