@@ -23,6 +23,18 @@
     <button @click="removeCurrentSong" :disabled="!currentSong" class="control-button remove-button">
       Удалить текущую песню
     </button>
+    <div class="playlist">
+      <h3>Плейлист</h3>
+      <ul>
+        <li
+          v-for="(song, index) in songs"
+          :key="index"
+          :class="{ active: currentSong && song.title === currentSong.value.title }"
+        >
+          {{ song.title }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -37,14 +49,14 @@ const isPlaying = ref(false);
 const progress = ref(0);
 
 // Пример списка песен
-const songs = [
+const songs = ref([
   { title: "Песня 1", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
   { title: "Песня 2", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
   { title: "Песня 3", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
-];
+]);
 
 onMounted(() => {
-  songs.forEach(song => playlist.value.add(song));
+  songs.value.forEach(song => playlist.value.add(song));
   currentSong.value = playlist.value.current;
   if (audioPlayer.value && currentSong.value) {
     audioPlayer.value.src = currentSong.value.value.src;
@@ -53,7 +65,6 @@ onMounted(() => {
 
 const togglePlayPause = () => {
   if (!audioPlayer.value) return;
-
   if (isPlaying.value) {
     audioPlayer.value.pause();
   } else {
@@ -64,7 +75,6 @@ const togglePlayPause = () => {
 
 const updateProgress = () => {
   if (!audioPlayer.value) return;
-
   const { currentTime, duration } = audioPlayer.value;
   progress.value = (currentTime / duration) * 100;
 };
@@ -72,7 +82,10 @@ const updateProgress = () => {
 const removeCurrentSong = () => {
   if (!currentSong.value) return;
 
+  const currentSongTitle = currentSong.value.value.title;
   playlist.value.removeCurrent();
+  songs.value = songs.value.filter(song => song.title !== currentSongTitle);
+
   if (playlist.value.current) {
     currentSong.value = playlist.value.current;
     if (audioPlayer.value) {
@@ -109,7 +122,9 @@ const prevSong = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use '@/assets/styles/colors' as *;
+
 .music-player {
   max-width: 400px;
   margin: 0 auto;
@@ -200,5 +215,26 @@ const prevSong = () => {
 .remove-button:disabled {
   background-color: $color-secondary-button-disabled;
   cursor: not-allowed;
+}
+
+.playlist {
+  margin-top: 20px;
+}
+
+.playlist ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.playlist li {
+  padding: 8px;
+  margin: 5px 0;
+  background-color: $color-secondary-button-disabled;
+  border-radius: 4px;
+}
+
+.playlist li.active {
+  background-color: $app-accent;
+  color: white;
 }
 </style>
