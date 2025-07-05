@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { Comment } from './types';
+import { Comment } from './types.ts';
 
 interface Props {
   comment: Comment;

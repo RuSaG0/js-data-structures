@@ -25,6 +25,7 @@
     </div>
 
     <Post :post="post" :comments="comments" />
+    <FileStructure />
     <h2>Проблемы деревьев</h2>
     <p>
       Одной из основных проблем деревьев является их балансировка. Несбалансированные деревья могут
@@ -38,8 +39,9 @@
 import { ref } from 'vue';
 import AppCode from '@/components/ui/app-code.vue';
 import AppAppSection from '@/components/section/app-section.vue';
-import Post from './Post.vue';
-import { Comment } from './types';
+import Post from './examples/nested-comments/post.vue';
+import { type Comment } from './examples/nested-comments/types.ts';
+import FileStructure from '@/structures/tree/examples/file-structure/file-structure.vue'
 
 const code = ref(`console.log('Hello, world!')`);
 
