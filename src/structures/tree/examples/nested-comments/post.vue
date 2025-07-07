@@ -18,7 +18,7 @@
 import { computed } from 'vue';
 import NestedComment from './nested-comment.vue';
 import { convert } from './treeUtils.ts';
-import { Comment } from './types.ts';
+import { type Comment } from './types.ts';
 
 interface Post {
   text: string;

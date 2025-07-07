@@ -15,11 +15,6 @@
               {{ comment.text }}
             </span>
           </div>
-          <div class="answer__nested__comment">
-            <button class="answer">
-              Ответить
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -97,28 +92,12 @@ const getInitials = (name: string) => {
         .u__nested__comment__desc {
           padding-bottom: 1rem;
         }
-
-        .answer__nested__comment {
-          .answer {
-            margin: 0.3rem;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 0.3rem;
-            font-weight: 600;
-            background: $color-secondary-button;
-            color: $color-main-text;
-
-            &:hover {
-              background: $color-secondary-button-hover;
-            }
-          }
-        }
       }
     }
   }
 
   .next__nested__comment {
-    width: 110%;
+    width: 100%;
   }
 }
 </style>

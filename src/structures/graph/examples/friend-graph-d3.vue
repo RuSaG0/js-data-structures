@@ -10,25 +10,25 @@ const graph = ref(null)
 
 onMounted(() => {
   const nodes = [
-    { id: 'Alice' },
-    { id: 'Bob' },
-    { id: 'Charlie' },
-    { id: 'Diana' },
-    { id: 'Eva' },
-    { id: 'Frank' },
-    { id: 'Grace' }
-  ]
+    { id: 'Руслан' },
+    { id: 'Тимофей' },
+    { id: 'Алексей' },
+    { id: 'Дарья' },
+    { id: 'Елена' },
+    { id: 'Фёдор' },
+    { id: 'Галина' }
+  ];
 
   const links = [
-    { source: 'Alice', target: 'Bob' },
-    { source: 'Alice', target: 'Charlie' },
-    { source: 'Bob', target: 'Diana' },
-    { source: 'Charlie', target: 'Eva' },
-    { source: 'Eva', target: 'Frank' },
-    { source: 'Frank', target: 'Grace' },
-    { source: 'Grace', target: 'Alice' },
-    { source: 'Diana', target: 'Frank' }
-  ]
+    { source: 'Руслан', target: 'Тимофей' },
+    { source: 'Руслан', target: 'Алексей' },
+    { source: 'Тимофей', target: 'Дарья' },
+    { source: 'Алексей', target: 'Елена' },
+    { source: 'Елена', target: 'Фёдор' },
+    { source: 'Фёдор', target: 'Галина' },
+    { source: 'Галина', target: 'Руслан' },
+    { source: 'Дарья', target: 'Фёдор' }
+  ];
 
   const width = 600
   const height = 400
