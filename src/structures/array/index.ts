@@ -1,3 +1,3 @@
-import ViewArray from './view-array.vue.vue'
+import ViewArray from './view-array.vue'
 
 export { ViewArray }

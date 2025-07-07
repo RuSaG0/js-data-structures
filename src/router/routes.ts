@@ -1,4 +1,5 @@
 export const enum ERoutes {
+  Main = '/',
   List = '/list',
   Stack = '/stack',
   Queue = '/queue',

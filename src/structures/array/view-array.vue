@@ -1,11 +1,11 @@
 <template>
-  <app-app-section title="Массив / Вектор">
-    const array = [] <= Это вектор
-    а массив это вот
-    const buffer = new ArrayBuffer(24);
-    const bigint64 = new BigInt64Array(buffer);
-  </app-app-section>
+  <app-section title="Массив / Вектор">
+    <template #description>
+      const array = [] <= Это вектор а массив это вот const buffer = new ArrayBuffer(24); const
+      bigint64 = new BigInt64Array(buffer);
+    </template>
+  </app-section>
 </template>
 <script setup lang="ts">
-import AppAppSection from '@/components/section/app-section.vue'
+import AppSection from '@/components/section/app-section.vue'
 </script>

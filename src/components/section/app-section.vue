@@ -1,10 +1,12 @@
 <script setup lang="ts">
-defineProps({
-  title: {
-    type: String,
-    default: '',
+import { ERoutes } from '@/router/routes.ts'
+
+const props = defineProps({
+  hasBreadcrumbs: {
+    type: Boolean,
+    default: true,
   },
-  description: {
+  title: {
     type: String,
     default: '',
   },
@@ -12,18 +14,54 @@ defineProps({
 </script>
 
 <template>
-  <section class="section container">
+  <section class="section">
     <section class="section__header">
+      <div v-if="hasBreadcrumbs" class="section__header__breadcrumbs">
+        <router-link :to="ERoutes.Main">Главная</router-link>
+        <span>/</span>
+        <span>{{ title }}</span>
+      </div>
+
       <h2 v-if="title" class="section__header__title">
         {{ title }}
       </h2>
 
-      <p v-if="description" class="section__header__text">
-        {{ description }}
-      </p>
+      <div v-if="$slots.description" class="section__header__description">
+        <slot name="description" />
+      </div>
     </section>
 
     <section class="section__body">
+      <div class="section__body__examples">
+        <div v-if="$slots.example1" class="section__body__example">
+          <h3 class="section__body__example__title">Пример #1</h3>
+
+          <slot name="example1" />
+        </div>
+
+        <div v-if="$slots.example2" class="section__body__example">
+          <h3 class="section__body__example__title">Пример #2</h3>
+
+          <slot name="example2" />
+        </div>
+      </div>
+
+      <div v-if="$slots.pros" class="section__body__pros">
+        <h3 class="section__body__pros__title">Когда использовать?</h3>
+
+        <div class="section__body__pros__text">
+          <slot name="pros" />
+        </div>
+      </div>
+
+      <div v-if="$slots.pros" class="section__body__cons">
+        <h3 class="section__body__cons__title">Недостатки</h3>
+
+        <div class="section__body__cons__text">
+          <slot name="cons" />
+        </div>
+      </div>
+
       <slot></slot>
     </section>
   </section>
@@ -35,50 +73,103 @@ defineProps({
 @use '@/assets/styles/fonts' as *;
 
 .section {
-  margin-bottom: 40px !important;
+  & + & {
+    margin-top: 40px;
+  }
 
   &__header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+    margin-bottom: 20px;
 
     @include tablet {
       gap: 8px;
     }
 
-    &__title {
-      margin-bottom: 20px;
-      color: $color-black-text;
-      font-size: 48px;
-      font-weight: 500;
-      line-height: 64px;
-      text-align: left;
+    &__breadcrumbs {
+      display: none;
+      align-items: center;
+      gap: 4px;
 
-      @include tablet {
-        text-align: center;
-        font-size: 40px;
-        font-weight: 400;
+      @include mobile {
+        display: flex;
+      }
+
+      > * {
+        text-decoration: none;
       }
     }
 
-    &__text {
+    &__title {
       color: $color-black-text;
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 35px;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.2;
       text-align: left;
-      width: 460px;
 
       @include tablet {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 12px;
+        font-size: 28px;
       }
+
+      @include mobile {
+        font-size: 24px;
+      }
+    }
+
+    &__description {
+      width: 100%;
+      color: $color-black-text;
+      background-color: $app-background;
+      border-left: 4px solid $app-accent;
+      padding: 10px;
     }
   }
 
   &__body {
+    &__examples {
+      h3 {
+        font-style: italic;
+      }
+    }
+
+    &__example {
+      & + & {
+        margin-top: 30px;
+      }
+
+      &__title {
+        margin: 0 0 6px !important;
+      }
+
+      p {
+        margin: 0 0 6px !important;
+      }
+    }
+
+    &__pros {
+      color: $color-black-text;
+      background-color: $app-background;
+      border-left: 4px solid #3bcf7a;
+      padding: 10px;
+
+      &__title {
+        margin: 0 0 6px !important;
+      }
+    }
+
+    &__cons {
+      color: $color-black-text;
+      background-color: $app-background;
+      border-left: 4px solid #ffa397;
+      padding: 10px;
+
+      &__title {
+        margin: 0 0 6px !important;
+      }
+    }
+
     > :first-child {
       margin-top: 0 !important;
     }
@@ -87,11 +178,15 @@ defineProps({
       margin-bottom: 0 !important;
     }
 
+    > * {
+      margin-bottom: 40px;
+    }
+
     h2,
     h3,
     h4,
     h5 {
-      margin: 1em 0;
+      margin: 1em 0 0.8em;
     }
 
     p {

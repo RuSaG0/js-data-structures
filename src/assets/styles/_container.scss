@@ -1,18 +1,15 @@
 @use 'breakpoints' as *;
 
 @mixin container {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
   width: $desktop;
-  max-width: calc(100vw - 100px);
+  max-width: calc(100vw - 40px);
   margin: 0 auto;
 
   @include tablet {
-    max-width: 100%;
+    max-width: calc(100vw - 20px);
   }
 
-  @include tablet {
+  @include mobile {
     max-width: 100%;
     margin: 0;
   }
@@ -20,4 +17,8 @@
 
 .container {
   @include container;
+
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }
