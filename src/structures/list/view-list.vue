@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppSection from '@/components/section/app-section.vue'
-import MusicPlayer from '@/structures/list/examples/music-player.vue'
-import Paint from '@/structures/list/examples/paint.vue'
+import MusicPlayer from '@/structures/list/examples/music-player/music-player.vue'
+import Paint from '@/structures/list/examples/paint/paint.vue'
 </script>
 
 <template>

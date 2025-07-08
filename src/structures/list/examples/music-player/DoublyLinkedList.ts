@@ -11,7 +11,7 @@ export class LinkedListNode<T> {
 }
 
 
-export class LinkedList<T> {
+export class DoublyLinkedList<T> {
   head: LinkedListNode<T> | null;
   tail: LinkedListNode<T> | null;
   current: LinkedListNode<T> | null;

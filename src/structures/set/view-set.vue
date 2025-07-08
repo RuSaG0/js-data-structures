@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppSection from '@/components/section/app-section.vue'
 import Tags from '@/structures/set/examples/tags.vue'
-import MusicPlayer from '@/structures/list/examples/music-player.vue'
+import MusicPlayer from '@/structures/list/examples/music-player/music-player.vue'
 </script>
 
 <template>

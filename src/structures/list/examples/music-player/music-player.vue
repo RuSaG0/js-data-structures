@@ -40,10 +40,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { LinkedListNode, LinkedList } from '../LinkedList.ts';
+import { LinkedListNode, DoublyLinkedList } from './DoublyLinkedList.ts';
 
 const audioPlayer = ref<HTMLAudioElement | null>(null);
-const playlist = ref(new LinkedList<{title: string, src: string}>());
+const playlist = ref(new DoublyLinkedList<{title: string, src: string}>());
 const currentSong = ref<LinkedListNode<{title: string, src: string}> | null>(null);
 const isPlaying = ref(false);
 const progress = ref(0);
