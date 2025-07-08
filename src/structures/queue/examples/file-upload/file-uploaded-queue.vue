@@ -26,7 +26,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { UploadQueue, type UploadItem } from '../queue.ts'
+import {
+  type UploadItem,
+  UploadQueue
+} from '@/structures/queue/examples/file-upload/upload-queue.ts'
 
 const queueItems = ref<UploadItem[]>([])
 
