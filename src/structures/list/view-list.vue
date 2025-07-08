@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppSection from '@/components/section/app-section.vue'
 import MusicPlayer from '@/structures/list/examples/music-player.vue'
+import Paint from '@/structures/list/examples/paint.vue'
 </script>
 
 <template>
@@ -16,6 +17,11 @@ import MusicPlayer from '@/structures/list/examples/music-player.vue'
     <template #example1>
       <p>Реализация музыкального плеера</p>
       <music-player />
+    </template>
+
+    <template #example2>
+      <p>Реализация графического редактора с функциональностью undo / redo</p>
+      <paint />
     </template>
 
     <template #pros>
