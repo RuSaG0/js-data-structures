@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AppSection from '@/components/section/app-section.vue'
 import ModalFlowCase from '@/structures/stack/examples/modal-flow-case.vue'
-import TextEditorCase from '@/structures/stack/examples/text-editor-case.vue'
 </script>
 
 <template>
