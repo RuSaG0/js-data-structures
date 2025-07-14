@@ -16,7 +16,7 @@ import MusicPlayer from '@/structures/list/examples/music-player/music-player.vu
 
     <template #example1>
       <p>
-        Киносайт, где фильмы могут быть помечены различными жанрами. Множество может быть
+        <a href="https://premier.one/series/dramy/RU" target="_blank">Киносайт</a>, где фильмы могут быть помечены различными жанрами. Множество может быть
         использовано для хранения и отображения уникальных жанров, связанных с фильмами.
       </p>
       <tags />
