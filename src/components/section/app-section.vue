@@ -32,20 +32,6 @@ const props = defineProps({
     </section>
 
     <section class="section__body">
-      <div class="section__body__examples">
-        <div v-if="$slots.example1" class="section__body__example">
-          <h3 class="section__body__example__title">Пример #1</h3>
-
-          <slot name="example1" />
-        </div>
-
-        <div v-if="$slots.example2" class="section__body__example">
-          <h3 class="section__body__example__title">Пример #2</h3>
-
-          <slot name="example2" />
-        </div>
-      </div>
-
       <div v-if="$slots.pros" class="section__body__pros">
         <h3 class="section__body__pros__title">Когда использовать?</h3>
 
@@ -59,6 +45,20 @@ const props = defineProps({
 
         <div class="section__body__cons__text">
           <slot name="cons" />
+        </div>
+      </div>
+
+      <div class="section__body__examples">
+        <div v-if="$slots.example1" class="section__body__example">
+          <h3 class="section__body__example__title">Пример #1</h3>
+
+          <slot name="example1" />
+        </div>
+
+        <div v-if="$slots.example2" class="section__body__example">
+          <h3 class="section__body__example__title">Пример #2</h3>
+
+          <slot name="example2" />
         </div>
       </div>
 
@@ -81,11 +81,11 @@ const props = defineProps({
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 32px;
     margin-bottom: 20px;
 
     @include tablet {
-      gap: 8px;
+      gap: 16px;
     }
 
     &__breadcrumbs {
@@ -121,14 +121,23 @@ const props = defineProps({
     &__description {
       width: 100%;
       color: $color-black-text;
-      background-color: $app-background;
-      border-left: 4px solid $app-accent;
       padding: 10px;
+      border: 2px solid $app-background;
+
+      > :first-child {
+        margin-top: 0 !important;
+      }
+
+      > :last-child {
+        margin-bottom: 0 !important;
+      }
     }
   }
 
   &__body {
     &__examples {
+      margin-top: 40px;
+
       h3 {
         font-style: italic;
       }
@@ -136,7 +145,7 @@ const props = defineProps({
 
     &__example {
       & + & {
-        margin-top: 30px;
+        margin-top: 40px;
       }
 
       &__title {
@@ -168,6 +177,16 @@ const props = defineProps({
       &__title {
         margin: 0 0 6px !important;
       }
+
+      &__text {
+        > :first-child {
+          margin-top: 0 !important;
+        }
+
+        > :last-child {
+          margin-bottom: 0 !important;
+        }
+      }
     }
 
     > :first-child {
@@ -179,7 +198,7 @@ const props = defineProps({
     }
 
     > * {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     h2,

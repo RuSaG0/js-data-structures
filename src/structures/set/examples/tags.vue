@@ -9,7 +9,7 @@
             v-for="tag in tags"
             :key="tag"
             @click="toggleTag(category, tag)"
-            :class="['tag-button', { 'selected': selectedTags[category].has(tag) }]"
+            :class="['tag-button', { selected: selectedTags[category].has(tag) }]"
           >
             {{ tag }}
           </button>
@@ -18,11 +18,7 @@
     </div>
     <h2 class="movies-title">Movies:</h2>
     <ul class="movies-list">
-      <li
-        v-for="movie in filteredMovies"
-        :key="movie.id"
-        class="movie-item"
-      >
+      <li v-for="movie in filteredMovies" :key="movie.id" class="movie-item">
         <div class="movie-title">{{ movie.title }}</div>
         <div class="movie-tags">
           {{ movie.tags.map(([cat, val]) => `${val}`).join(', ') }}
@@ -38,41 +34,59 @@ const movies = ref([
   {
     id: 1,
     title: 'Brother',
-    tags: [['origin', 'Russian'], ['type', 'Movie']]
+    tags: [
+      ['origin', 'Russian'],
+      ['type', 'Movie'],
+    ],
   },
   {
     id: 2,
     title: 'Leviathan',
-    tags: [['origin', 'Russian'], ['type', 'Movie']]
+    tags: [
+      ['origin', 'Russian'],
+      ['type', 'Movie'],
+    ],
   },
   {
     id: 3,
     title: 'Interstellar',
-    tags: [['origin', 'Foreign'], ['type', 'Movie']]
+    tags: [
+      ['origin', 'Foreign'],
+      ['type', 'Movie'],
+    ],
   },
   {
     id: 4,
     title: 'Breaking Bad',
-    tags: [['origin', 'Foreign'], ['type', 'Series']]
+    tags: [
+      ['origin', 'Foreign'],
+      ['type', 'Series'],
+    ],
   },
   {
     id: 5,
     title: 'Going Vertical',
-    tags: [['origin', 'Russian'], ['type', 'Movie']]
+    tags: [
+      ['origin', 'Russian'],
+      ['type', 'Movie'],
+    ],
   },
   {
     id: 6,
     title: 'Silver Spoon',
-    tags: [['origin', 'Russian'], ['type', 'Series']]
-  }
+    tags: [
+      ['origin', 'Russian'],
+      ['type', 'Series'],
+    ],
+  },
 ])
 const allTags = {
   origin: ['Russian', 'Foreign'],
-  type: ['Movie', 'Series']
+  type: ['Movie', 'Series'],
 }
 const selectedTags = ref({
   origin: new Set(),
-  type: new Set()
+  type: new Set(),
 })
 function toggleTag(category, tag) {
   const set = selectedTags.value[category]
@@ -83,16 +97,14 @@ function toggleTag(category, tag) {
   }
   selectedTags.value = {
     ...selectedTags.value,
-    [category]: new Set(set)
+    [category]: new Set(set),
   }
 }
 const filteredMovies = computed(() => {
-  return movies.value.filter(movie => {
+  return movies.value.filter((movie) => {
     return Object.entries(selectedTags.value).every(([category, tagSet]) => {
       if (tagSet.size === 0) return true
-      return movie.tags.some(([cat, tag]) =>
-        cat === category && tagSet.has(tag)
-      )
+      return movie.tags.some(([cat, tag]) => cat === category && tagSet.has(tag))
     })
   })
 })
@@ -110,7 +122,8 @@ $transition-time: 0.3s;
   max-width: 1200px;
   margin: 0 auto;
 
-  .filters-title, .movies-title {
+  .filters-title,
+  .movies-title {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
@@ -151,7 +164,7 @@ $transition-time: 0.3s;
           }
 
           &:hover:not(.selected) {
-            background-color: darken($background-color, 5%);
+            background-color: $background-color;
           }
         }
       }

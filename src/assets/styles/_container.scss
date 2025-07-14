@@ -16,9 +16,9 @@
 }
 
 .container {
-  @include container;
-
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+
+  @include container;
 }

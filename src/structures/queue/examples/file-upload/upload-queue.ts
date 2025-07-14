@@ -4,6 +4,7 @@ export type UploadItem = {
   id: string
   file: File
   status: 'pending' | 'uploading' | 'done'
+  progress: number
 }
 type UploadCallback = (item: UploadItem, markDone: () => void) => void
 
@@ -21,6 +22,7 @@ export class UploadQueue extends Queue<UploadItem> {
       id: `${Date.now()}-${Math.random()}`,
       file,
       status: 'pending',
+      progress: 0,
     }
     super.enqueue(item)
     this.tryUploadNext()

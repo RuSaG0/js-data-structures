@@ -1,240 +1,237 @@
 <template>
   <div class="music-player">
-    <h2>Музыкальный плеер</h2>
-    <div class="current-song">
-      <p>Текущая песня: {{ currentSong ? currentSong.value.title : 'Нет песен' }}</p>
+    <div class="music-player__playlist">
+      <div v-if="!songs.length" class="music-player__playlist__empty">Плейлист пуст</div>
+
+      <div
+        v-for="(song, index) in songs"
+        class="music-player__playlist__item"
+        :key="index"
+        :class="{ active: currentSong && song.title === currentSong.value.title }"
+      >
+        {{ song.title }}
+      </div>
     </div>
-    <audio ref="audioPlayer" @ended="nextSong" @timeupdate="updateProgress"></audio>
-    <div class="progress-container">
-      <div class="progress-bar" :style="{ width: progress + '%' }"></div>
+
+    <div class="music-player__progress">
+      <div class="music-player__progress__bar" :style="{ width: progress + '%' }" />
+
+      <audio ref="audioPlayer" @ended="nextSong" @timeupdate="updateProgress" />
     </div>
-    <div class="controls">
-      <button @click="prevSong" :disabled="!playlist.head" class="control-button prev-button">
-        ←
+
+    <div class="music-player__navigation">
+      <div class="music-player__controls">
+        <button class="music-player__control prev" @click="prevSong" :disabled="!playlist.head">
+          ←
+        </button>
+
+        <button class="music-player__control play" @click="togglePlayPause">
+          <span v-if="isPlaying">❚❚</span>
+          <span v-else>▶</span>
+        </button>
+
+        <button class="music-player__control next" @click="nextSong" :disabled="!playlist.head">
+          →
+        </button>
+      </div>
+
+      <div class="music-player__current-song">
+        {{ currentSong ? currentSong.value.title : 'Нет песен' }}
+      </div>
+
+      <button class="music-player__delete" @click="removeCurrentSong" :disabled="!currentSong">
+        Удалить текущую песню
       </button>
-      <button @click="togglePlayPause" class="control-button play-pause-button">
-        <span v-if="isPlaying">❚❚</span>
-        <span v-else>▶</span>
-      </button>
-      <button @click="nextSong" :disabled="!playlist.head" class="control-button next-button">
-        →
-      </button>
-    </div>
-    <button @click="removeCurrentSong" :disabled="!currentSong" class="control-button remove-button">
-      Удалить текущую песню
-    </button>
-    <div class="playlist">
-      <h3>Плейлист</h3>
-      <ul>
-        <li
-          v-for="(song, index) in songs"
-          :key="index"
-          :class="{ active: currentSong && song.title === currentSong.value.title }"
-        >
-          {{ song.title }}
-        </li>
-      </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { LinkedListNode, DoublyLinkedList } from './DoublyLinkedList.ts';
+import { ref, onMounted } from 'vue'
+import { LinkedListNode, DoublyLinkedList } from './DoublyLinkedList.ts'
 
-const audioPlayer = ref<HTMLAudioElement | null>(null);
-const playlist = ref(new DoublyLinkedList<{title: string, src: string}>());
-const currentSong = ref<LinkedListNode<{title: string, src: string}> | null>(null);
-const isPlaying = ref(false);
-const progress = ref(0);
+const audioPlayer = ref<HTMLAudioElement | null>(null)
+const playlist = ref(new DoublyLinkedList<{ title: string; src: string }>())
+const currentSong = ref<LinkedListNode<{ title: string; src: string }> | null>(null)
+const isPlaying = ref<boolean>(false)
+const progress = ref<number>(0)
 
 // Пример списка песен
 const songs = ref([
-  { title: "Песня 1", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-  { title: "Песня 2", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-  { title: "Песня 3", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
-]);
+  { title: '🦄 Песня 1', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+  { title: '🤑 Песня 2', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+  { title: '🤖 Песня 3', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+])
 
 onMounted(() => {
-  songs.value.forEach(song => playlist.value.add(song));
-  currentSong.value = playlist.value.current;
+  songs.value.forEach((song) => playlist.value.add(song))
+  currentSong.value = playlist.value.current
+
   if (audioPlayer.value && currentSong.value) {
-    audioPlayer.value.src = currentSong.value.value.src;
+    audioPlayer.value.src = currentSong.value.value.src
   }
-});
+})
 
 const togglePlayPause = () => {
-  if (!audioPlayer.value) return;
+  if (!audioPlayer.value) return
   if (isPlaying.value) {
-    audioPlayer.value.pause();
+    audioPlayer.value.pause()
   } else {
-    audioPlayer.value.play();
+    audioPlayer.value.play()
   }
-  isPlaying.value = !isPlaying.value;
-};
+  isPlaying.value = !isPlaying.value
+}
 
 const updateProgress = () => {
-  if (!audioPlayer.value) return;
-  const { currentTime, duration } = audioPlayer.value;
-  progress.value = (currentTime / duration) * 100;
-};
+  if (!audioPlayer.value) return
+  const { currentTime, duration } = audioPlayer.value
+  progress.value = (currentTime / duration) * 100
+}
 
 const removeCurrentSong = () => {
-  if (!currentSong.value) return;
+  if (!currentSong.value) return
 
-  const currentSongTitle = currentSong.value.value.title;
-  playlist.value.removeCurrent();
-  songs.value = songs.value.filter(song => song.title !== currentSongTitle);
+  const currentSongTitle = currentSong.value.value.title
+  playlist.value.removeCurrent()
+  songs.value = songs.value.filter((song) => song.title !== currentSongTitle)
 
   if (playlist.value.current) {
-    currentSong.value = playlist.value.current;
+    currentSong.value = playlist.value.current
     if (audioPlayer.value) {
-      audioPlayer.value.src = currentSong.value.value.src;
+      audioPlayer.value.src = currentSong.value.value.src
       if (isPlaying.value) {
-        audioPlayer.value.play();
+        audioPlayer.value.play()
       }
     }
   } else {
-    currentSong.value = null;
+    currentSong.value = null
   }
-};
+}
 
 const nextSong = () => {
-  playlist.value.next();
-  currentSong.value = playlist.value.current;
+  playlist.value.next()
+  currentSong.value = playlist.value.current
   if (audioPlayer.value && currentSong.value) {
-    audioPlayer.value.src = currentSong.value.value.src;
+    audioPlayer.value.src = currentSong.value.value.src
     if (isPlaying.value) {
-      audioPlayer.value.play();
+      audioPlayer.value.play()
     }
   }
-};
+}
 
 const prevSong = () => {
-  playlist.value.prev();
-  currentSong.value = playlist.value.current;
+  playlist.value.prev()
+  currentSong.value = playlist.value.current
   if (audioPlayer.value && currentSong.value) {
-    audioPlayer.value.src = currentSong.value.value.src;
+    audioPlayer.value.src = currentSong.value.value.src
     if (isPlaying.value) {
-      audioPlayer.value.play();
+      audioPlayer.value.play()
     }
   }
-};
+}
 </script>
 
 <style scoped lang="scss">
 @use '@/assets/styles/colors' as *;
+@use '@/assets/styles/breakpoints' as *;
 
 .music-player {
-  max-width: 400px;
-  margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
   background-color: $app-background;
   color: $color-black-text;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-.current-song {
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 18px;
-}
+  &__playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 
-.progress-container {
-  width: 100%;
-  height: 10px;
-  background-color: $color-secondary-button-disabled;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
+    &__item {
+      padding: 4px;
+      border: 1px solid #000;
+    }
+  }
 
-.progress-bar {
-  height: 100%;
-  background-color: $app-accent;
-  border-radius: 5px;
-}
+  &__progress {
+    height: 10px;
+    margin: 10px 0;
+    border: 1px solid #000;
 
-.controls {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
+    &__bar {
+      height: 10px;
+      background: #000;
+    }
+  }
 
-.control-button {
-  width: 50px;
-  height: 50px;
-  margin: 0 10px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: $color-main-text;
-}
+  &__navigation {
+    display: flex;
+    align-items: center;
 
-.prev-button, .next-button {
-  background-color: $color-secondary-button;
-}
+    @include mobile {
+      flex-wrap: wrap;
+    }
+  }
 
-.prev-button:hover:not(:disabled), .next-button:hover:not(:disabled) {
-  background-color: $color-secondary-button-hover;
-}
+  &__controls {
+    display: flex;
+    gap: 6px;
 
-.prev-button:disabled, .next-button:disabled {
-  background-color: $color-secondary-button-disabled;
-  cursor: not-allowed;
-}
+    @include mobile-sm {
+      margin: 0 auto;
+    }
 
-.play-pause-button {
-  background-color: $color-primary-button;
-}
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid #000;
+      background: $color-primary-button;
 
-.play-pause-button:hover:not(:disabled) {
-  background-color: $color-primary-button-hover;
-}
+      &:hover {
+        background: $color-primary-button-hover;
+        color: $color-main-text;
+      }
+    }
+  }
 
-.remove-button {
-  margin-top: 15px;
-  width: 100%;
-  padding: 10px;
-  background-color: $color-accent;
-  color: $color-main-text;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  &__current-song {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    height: 38px;
+    margin: 0 10px;
+    padding: 4px;
+    border: 1px solid #000;
 
-.remove-button:hover:not(:disabled) {
-  background-color: $color-black-text;
-}
+    @include mobile {
+      width: 100%;
+      order: -1;
+      margin: 0 0 10px 0;
+    }
+  }
 
-.remove-button:disabled {
-  background-color: $color-secondary-button-disabled;
-  cursor: not-allowed;
-}
+  &__delete {
+    height: 38px;
+    margin-left: auto;
+    padding: 4px 10px;
+    background: $color-accent;
+    border: 1px solid #000;
+    color: $color-main-text;
 
-.playlist {
-  margin-top: 20px;
-}
+    &:hover {
+      background: $color-main-text;
+      color: $color-accent;
+    }
 
-.playlist ul {
-  list-style-type: none;
-  padding: 0;
-}
+    @include mobile {
+      margin-left: 10px;
+    }
 
-.playlist li {
-  padding: 8px;
-  margin: 5px 0;
-  background-color: $color-secondary-button-disabled;
-  border-radius: 4px;
-}
-
-.playlist li.active {
-  background-color: $app-accent;
-  color: white;
+    @include mobile-sm {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
 }
 </style>

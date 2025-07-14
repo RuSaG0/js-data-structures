@@ -44,16 +44,20 @@ import { ERoutes } from '@/router/routes.ts'
 @use '@/assets/styles/breakpoints' as *;
 
 .main {
-  @include container;
-
   display: flex;
   align-items: flex-start;
   overflow: hidden;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 20px !important;
+
+  @include container;
 
   @include tablet {
     gap: 10px;
+  }
+
+  @include mobile {
+    margin-top: 0 !important;
   }
 }
 
@@ -104,11 +108,11 @@ import { ERoutes } from '@/router/routes.ts'
   overflow: auto;
   max-height: calc(100dvh - 20px);
   background: $app-card-background;
-  padding: 20px;
-  padding-bottom: 60px;
+  padding: 20px 20px 60px 20px;
 
   @include mobile {
     max-height: 100dvh;
+    padding: 10px 10px 40px 10px;
   }
 }
 </style>
