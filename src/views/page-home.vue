@@ -11,7 +11,7 @@ import AppSection from '@/components/section/app-section.vue'
       Мы, Тимофей Соломеннико и Мирзоев Руслан, разработчики из онлайн-кинотеатра <a href="https://premier.one/" target="_blank">PREMIER</a>, хотим поделиться своим опытом.
       Для этого мы <b>выбрали несколько структур данных</b> и для каждой из них <b>сделали реальные примеры.</b>
     </p>
-    <p>Исходный проект доступен на <a href="https://github.com/RuSaG0/js-data-structures" target="_blank">Github</a></p>
+    <p>Для этого мы создали проект, исходный код которого доступен на <a href="https://github.com/RuSaG0/js-data-structures" target="_blank">Github</a></p>
     <div>
       <p>Если остались какие-то вопросы, можете написать в личку, будем рады ответить:</p>
       <ul>
