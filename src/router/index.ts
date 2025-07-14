@@ -3,7 +3,7 @@ import PageHome from '@/views/page-home.vue'
 import { ERoutes } from '@/router/routes.ts'
 
 const router = createRouter({
-  history: createWebHistory('js-data-structures'),
+  history: createWebHistory('/js-data-structures/'),
   routes: [
     {
       path: '/',
