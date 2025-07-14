@@ -10,7 +10,8 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
     "d3": "^7.9.0",
@@ -28,6 +29,7 @@
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.29.0",
     "eslint-plugin-vue": "~10.2.0",
+    "gh-pages": "^6.3.0",
     "jiti": "^2.4.2",
     "npm-run-all2": "^8.0.4",
     "prettier": "3.5.3",
