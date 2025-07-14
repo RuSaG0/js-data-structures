@@ -1,5 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PageHome from '@/views/page-home.vue'
+import PageList from '@/views/page-list.vue'
+import PageStack from '@/views/page-stack.vue'
+import PageQueue from '@/views/page-queue.vue'
+import PageTree from '@/views/page-tree.vue'
+import PageGraph from '@/views/page-graph.vue'
+import PageSet from '@/views/page-set.vue'
+
 import { ERoutes } from '@/router/routes.ts'
 
 const router = createRouter({
@@ -13,32 +20,32 @@ const router = createRouter({
     {
       path: ERoutes.List,
       name: 'list',
-      component: () => import('../views/page-list.vue'),
+      component: PageList,
     },
     {
       path: ERoutes.Stack,
       name: 'stack',
-      component: () => import('../views/page-stack.vue'),
+      component: PageStack,
     },
     {
       path: ERoutes.Queue,
       name: 'queue',
-      component: () => import('../views/page-queue.vue'),
+      component: PageQueue,
     },
     {
       path: ERoutes.Tree,
       name: 'tree',
-      component: () => import('../views/page-tree.vue'),
+      component: PageTree,
     },
     {
       path: ERoutes.Graph,
       name: 'graph',
-      component: () => import('../views/page-graph.vue'),
+      component: PageGraph,
     },
     {
       path: ERoutes.Set,
       name: 'set',
-      component: () => import('../views/page-set.vue'),
+      component: PageSet,
     },
   ],
 })
