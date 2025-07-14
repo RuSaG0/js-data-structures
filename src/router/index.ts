@@ -40,11 +40,6 @@ const router = createRouter({
       name: 'set',
       component: () => import('../views/page-set.vue'),
     },
-    {
-      path: ERoutes.Array,
-      name: 'array',
-      component: () => import('../views/page-array.vue'),
-    },
   ],
 })
 

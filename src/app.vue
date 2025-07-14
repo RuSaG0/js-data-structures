@@ -9,9 +9,6 @@ import { ERoutes } from '@/router/routes.ts'
       <router-link class="sidebar__item" :to="ERoutes.Main">
         <span>Главная</span>
       </router-link>
-      <router-link class="sidebar__item" :to="ERoutes.Array">
-        <span>Массив</span>
-      </router-link>
       <router-link class="sidebar__item" :to="ERoutes.List">
         <span>Связный список</span>
       </router-link>
