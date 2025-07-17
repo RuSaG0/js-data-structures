@@ -1,103 +1,81 @@
 <template>
-  <div class="nested__comment__data">
-    <div class="nested__comment">
-      <div class="u__img__avatar">
-        <img :src="comment.owner.avatar_url" alt="Avatar" v-if="comment.owner.avatar_url">
-        <div class="fake-avatar" v-else>{{ getInitials(comment.owner.first_name) }}</div>
-      </div>
-      <div class="info__comment">
-        <div class="u__nested__comment">
-          <div class="u__name">
-            <span class="name">{{ comment.owner.first_name }}</span>
-          </div>
-          <div class="u__nested__comment__desc">
-            <span class="desc">
-              {{ comment.text }}
-            </span>
-          </div>
+  <div class="nested-comment-wrapper">
+    <div class="nested-comment">
+      <div class="nested-comment__avatar">
+        <img v-if="comment.owner.avatar_url" :src="comment.owner.avatar_url" alt="Аватарка" />
+        <div v-else class="nested-comment__avatar-fake">
+          {{ getInitials(comment.owner.first_name) }}
         </div>
       </div>
-    </div>
-    <template v-if="comment.children">
-      <div class="next__nested__comment">
-        <nested-comment
-          v-for="child in comment.children"
-          :key="child.id"
-          :comment="child"
-          :lvl-nested="lvlNested + 1"
-        />
+      <div class="nested-comment__info">
+        <div class="nested-comment__info__name">{{ comment.owner.first_name }}</div>
+        <div class="nested-comment__info__text">{{ comment.text }}</div>
       </div>
-    </template>
+    </div>
+    <div v-if="comment.children" class="nested-comment-next">
+      <nested-comment v-for="child in comment.children" :key="child.id" :comment="child" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Comment } from './types.ts';
+import { type Comment } from './types.ts'
 
-interface Props {
-  comment: Comment;
-  lvlNested: number;
-}
-
-const props = defineProps<Props>();
+defineProps<{
+  comment: Comment
+}>()
 
 const getInitials = (name: string) => {
-  return name.charAt(0).toUpperCase();
-};
+  return name.charAt(0).toUpperCase()
+}
 </script>
 
 <style scoped lang="scss">
 @use '@/assets/styles/colors' as *;
 
-
-.nested__comment__data {
+.nested-comment-wrapper {
   margin: 0.5rem 0.5rem 0.5rem 1.5rem;
+}
 
-  .u__img__avatar {
-    & img, & .fake-avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
+.nested-comment {
+  display: flex;
 
-    .fake-avatar {
-      background: $color-secondary-button;
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    &-fake {
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: $color-secondary-button;
       color: $color-main-text;
-      font-weight: bold;
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 50%;
     }
   }
 
-  .nested__comment {
-    display: flex;
-
-    .info__comment {
-      width: 100%;
-      margin-left: 0.5rem;
-      background: $color-text-input-background;
-      border-radius: 1rem;
-      padding: 1rem;
-      color: $color-black-text;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-      .u__nested__comment {
-        .u__name {
-          padding-bottom: 1rem;
-          font-weight: bold;
-          color: $color-black-text
-        }
-
-        .u__nested__comment__desc {
-          padding-bottom: 1rem;
-        }
-      }
-    }
-  }
-
-  .next__nested__comment {
+  &__info {
     width: 100%;
+    margin-left: 8px;
+    background: $color-text-input-background;
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: $color-black-text;
+
+    &__name {
+      padding-bottom: 6px;
+      font-weight: bold;
+      color: $color-black-text;
+    }
   }
+}
+
+.nested-comment-next {
+  width: 100%;
 }
 </style>

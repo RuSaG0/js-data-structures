@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import AppSection from '@/components/section/app-section.vue'
-import Post from './examples/nested-comments/post.vue'
+import PostWithComments from './examples/nested-comments/post-with-comments.vue'
 import { type Comment } from './examples/nested-comments/types.ts'
 import FileStructure from '@/structures/tree/examples/file-structure/file-structure.vue'
 
@@ -14,25 +14,25 @@ const comments = ref<Comment[]>([
     id: 1,
     text: 'Первый комментарий',
     owner: { first_name: 'Иван', avatar_url: '' },
-    parent: null,
+    parentId: null,
   },
   {
     id: 2,
     text: 'Ответ на первый комментарий',
     owner: { first_name: 'Мария', avatar_url: '' },
-    parent: 1,
+    parentId: 1,
   },
   {
     id: 3,
     text: 'Второй комментарий',
     owner: { first_name: 'Алексей', avatar_url: '' },
-    parent: null,
+    parentId: null,
   },
   {
     id: 4,
     text: 'Ответ на второй комментарий',
     owner: { first_name: 'Ольга', avatar_url: '' },
-    parent: 3,
+    parentId: 3,
   },
 ])
 </script>
@@ -77,7 +77,7 @@ const comments = ref<Comment[]>([
         </p>
       </div>
 
-      <Post :post="post" :comments="comments" />
+      <PostWithComments :post="post" :comments="comments" />
     </template>
 
     <template #example2>
@@ -93,29 +93,32 @@ const comments = ref<Comment[]>([
   </app-section>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@use '@/assets/styles/colors' as *;
+
 .explanation {
-  background-color: #f8f8f8;
-  border-left: 4px solid #aed47c;
+  background-color: $app-background;
+  border-left: 4px solid #2b95d6;
   padding: 10px 15px;
   margin: 15px 0;
-}
 
-.explanation h3 {
-  margin-top: 0;
-  color: #2d2f33;
-}
+  h3 {
+    margin-top: 0;
+    color: $color-black-text;
+    font-style: normal;
+  }
 
-.explanation p,
-.explanation ul {
-  margin-bottom: 10px;
-}
+  p,
+  ul {
+    margin-bottom: 10px;
+  }
 
-.explanation ul {
-  padding-left: 20px;
-}
+  ul {
+    padding-left: 20px;
+  }
 
-.explanation li {
-  margin-bottom: 5px;
+  li {
+    margin-bottom: 5px;
+  }
 }
 </style>

@@ -1,87 +1,86 @@
 <template>
   <div class="file-structure">
-    <div v-for="file in rootFolder.files" :key="file.name" class="file">
-      {{ file.name }} ({{ file.size }} bytes)
+    <div class="file-structure__file" v-for="file in rootFolder.files" :key="file.name">
+      {{ file.name }} ({{ file.size }}B)
     </div>
-    <div v-for="folder in rootFolder.folders" :key="folder.name">
-      <folder :folder="folder" />
+
+    <div class="file-structure__folders" v-for="folder in rootFolder.folders" :key="folder.name">
+      <file-directory :folder="folder" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Folder from './Folder.vue'
+import FileDirectory from './file-directory.vue'
+import type { IFile, IFileDirectory } from './types.ts'
 
-interface File {
-  name: string
-  size: number
-}
-
-interface Folder {
-  name: string
-  files: File[]
-  folders: Folder[]
-}
-
-const files = [
+const files: IFile[] = [
   {
-    id: 'Logs/WindowsUpdate/WindowsUpdate.20251224.etl',
+    name: 'Logs/WindowsUpdate/WindowsUpdate.20251224.etl',
     size: 1024,
   },
   {
-    id: 'debug/mrtlog.txt',
+    name: 'debug/mrtlog.txt',
     size: 124,
   },
   {
-    id: 'DirectX.log',
+    name: 'DirectX.log',
     size: 51,
   },
 ]
 
-function makeTree(files) {
-  const mapper = {}
+const rootFolder = ref<IFileDirectory>(makeTree(files))
 
-  for (const { id, size } of files) {
-    let node,
-      parent = ''
-    let i = 0,
-      j = 0
-    while (j > -1) {
-      let path = id.slice(0, j)
+function makeTree(files: IFile[]) {
+  const mapper: Record<string, IFileDirectory> = {}
+
+  for (const { name, size } of files) {
+    let directory: IFileDirectory
+    let parent = ''
+    let i = 0
+    let j = 0
+
+    while (j >= 0) {
+      const path = name.slice(0, j)
       if (!mapper[path]) {
-        node = {
-          name: id.slice(i, j),
+        directory = {
+          name: name.slice(i, j),
           files: [],
           folders: [],
         }
-        mapper[path] = node
-        if (path) mapper[parent].folders.push(node)
+
+        mapper[path] = directory
+
+        if (path) {
+          mapper[parent].folders.push(directory)
+        }
       }
       parent = path
-      i = j + !!i
-      j = id.indexOf('/', i)
+      i = j + (i > 0 ? 1 : 0)
+      j = name.indexOf('/', i)
     }
-    node = {
-      name: id.slice(i),
+
+    mapper[parent].files.push({
+      name: name.slice(i),
       size,
-    }
-    mapper[id] = node
-    mapper[parent].files.push(node)
+    })
   }
+
   return mapper['']
 }
-
-const rootFolder = ref<Folder>(makeTree(files))
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .file-structure {
   margin-top: 20px;
-}
 
-.file {
-  margin-left: 20px;
-  color: #666;
+  &__file {
+    color: #666;
+  }
+
+  &__folders {
+    margin-left: -20px;
+  }
 }
 </style>
