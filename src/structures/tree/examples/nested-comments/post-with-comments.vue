@@ -1,18 +1,3 @@
-<template>
-  <div class="post">
-    <div class="post__content">
-      {{ post.text }}
-    </div>
-    <div class="post__comments">
-      <nested-comment
-        v-for="comment in commentsTree?.children"
-        :key="comment.id"
-        :comment="comment"
-      />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue'
 import NestedComment from './nested-comment.vue'
@@ -71,6 +56,21 @@ function convert(flat: Comment[]) {
   return nested
 }
 </script>
+
+<template>
+  <div class="post">
+    <div class="post__content">
+      {{ post.text }}
+    </div>
+    <div class="post__comments">
+      <nested-comment
+        v-for="comment in commentsTree?.children"
+        :key="comment.id"
+        :comment="comment"
+      />
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 @use '@/assets/styles/colors' as *;

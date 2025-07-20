@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import AppSection from '@/components/section/app-section.vue'
+import FriendGraphD3 from './examples/friend-graph-d3.vue'
+</script>
+
 <template>
   <app-section title="Граф">
     <template #description>
@@ -5,7 +10,9 @@
       а рёбра — связи между этими объектами. В frontend-разработке графы могут быть использованы для
       представления социальных сетей, где узлы — это люди, а рёбра — их дружеские связи.
     </template>
+
     <template #pros> Когда нужна визуализация данных </template>
+
     <template #cons>
       Одной из основных проблем графов является сложность алгоритмов обхода и поиска, особенно в
       больших и плотно связанных графах. Это может привести к значительному увеличению времени
@@ -13,6 +20,7 @@
       <br />
       <b>Ключевые слова:</b> алгоритмы поиска в графах, обход графов, алгоритм Дейкстры.
     </template>
+
     <template #example1>
       <p>
         Социальная сеть, где пользователи могут добавлять друзей. Граф может быть использован для
@@ -22,8 +30,3 @@
     </template>
   </app-section>
 </template>
-
-<script setup lang="ts">
-import AppSection from '@/components/section/app-section.vue'
-import FriendGraphD3 from './examples/friend-graph-d3.vue'
-</script>

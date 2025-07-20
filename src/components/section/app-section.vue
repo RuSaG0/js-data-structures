@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ERoutes } from '@/router/routes.ts'
 
-const props = defineProps({
+defineProps({
   hasBreadcrumbs: {
     type: Boolean,
     default: true,
@@ -62,7 +62,9 @@ const props = defineProps({
         </div>
       </div>
 
-      <slot></slot>
+      <div class="section__body__text">
+        <slot />
+      </div>
     </section>
   </section>
 </template>
@@ -154,6 +156,16 @@ const props = defineProps({
 
       p {
         margin: 0 0 6px !important;
+      }
+    }
+
+    &__text {
+      :deep(> :first-child) {
+        margin-top: 0 !important;
+      }
+
+      :deep(> :last-child) {
+        margin-bottom: 0 !important;
       }
     }
 

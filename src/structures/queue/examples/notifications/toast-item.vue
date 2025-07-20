@@ -1,14 +1,6 @@
-<template>
-  <div class="toast-container">
-    <div v-for="toast in toasts" :key="toast.id" class="toast">
-      {{ toast.message }} {{ toast.id }}
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ToastQueue, type ToastItem } from './toast-queue.ts'
+import { ToastQueue, type ToastItem } from './types.ts'
 const toastQueue = new ToastQueue()
 const toasts = ref<ToastItem[]>([])
 
@@ -26,6 +18,14 @@ defineExpose({
   showToast,
 })
 </script>
+
+<template>
+  <div class="toast-container">
+    <div v-for="toast in toasts" :key="toast.id" class="toast">
+      {{ toast.message }} {{ toast.id }}
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 @use '@/assets/styles/colors' as *;

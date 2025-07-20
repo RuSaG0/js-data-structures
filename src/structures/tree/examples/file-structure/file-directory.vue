@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import type { IFileDirectory } from './types.ts'
+
+defineProps<{
+  folder: IFileDirectory
+}>()
+
+const isOpen = ref<boolean>(false)
+
+const toggle = () => {
+  isOpen.value = !isOpen.value
+}
+</script>
+
 <template>
   <div class="folder">
     <div class="folder__header" @click="toggle">
@@ -16,21 +31,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import type { IFileDirectory } from './types.ts'
-
-defineProps<{
-  folder: IFileDirectory
-}>()
-
-const isOpen = ref<boolean>(false)
-
-const toggle = () => {
-  isOpen.value = !isOpen.value
-}
-</script>
 
 <style lang="scss" scoped>
 .folder {

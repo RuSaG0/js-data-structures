@@ -1,27 +1,6 @@
-<template>
-  <div class="paint">
-    <div ref="canvasWrapper" class="paint__canvas-wrapper">
-      <canvas
-        class="paint__canvas"
-        ref="canvas"
-        height="400px"
-        @mousedown="startDrawing"
-        @mousemove="draw"
-        @mouseup="stopDrawing"
-      />
-    </div>
-
-    <div class="paint__controls">
-      <button @click="undo" :disabled="!canUndo">Undo</button>
-      <button @click="redo" :disabled="!canRedo">Redo</button>
-      <button @click="clear">Clear</button>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { LinkedList } from './LinkedList.ts'
+import { LinkedList } from './types.ts'
 
 const canvasWrapper = ref<HTMLDivElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
@@ -120,11 +99,32 @@ const clear = () => {
 
 const updateCanvasWidth = () => {
   if (canvas.value && canvasWrapper.value) {
-    canvas.value.width = canvasWrapper.value.getBoundingClientRect().width - 10
+    canvas.value.width = canvasWrapper.value.clientWidth - 10
     clear()
   }
 }
 </script>
+
+<template>
+  <div class="paint">
+    <div ref="canvasWrapper" class="paint__canvas-wrapper">
+      <canvas
+        class="paint__canvas"
+        ref="canvas"
+        height="400px"
+        @mousedown="startDrawing"
+        @mousemove="draw"
+        @mouseup="stopDrawing"
+      />
+    </div>
+
+    <div class="paint__controls">
+      <button @click="undo" :disabled="!canUndo">Undo</button>
+      <button @click="redo" :disabled="!canRedo">Redo</button>
+      <button @click="clear">Clear</button>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @use '@/assets/styles/colors' as *;

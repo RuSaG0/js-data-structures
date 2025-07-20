@@ -1,31 +1,4 @@
-<template>
-  <div class="modal-flow">
-    <button class="modal-flow__button-delete" @click="openDeleteAccountModal">
-      Удалить аккаунт
-    </button>
-
-    <div v-for="modal in modalStack.getItems()" :key="modal.id" class="modal">
-      <div class="modal__content">
-        <div class="modal__close" @click="closeLastModal">&times;</div>
-
-        <div class="modal__body">
-          <h3 class="modal__title">{{ modal.title }}</h3>
-          <p class="modal__text">{{ modal.content }}</p>
-        </div>
-
-        <div class="modal__buttons">
-          <button v-if="modal.id === 1" @click="openConfirmDeleteModal">
-            {{ modal.buttonText }}
-          </button>
-
-          <button v-if="modal.id === 2" @click="closeAllModals">{{ modal.buttonText }}</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { type Modal, Stack } from '../stack.ts'
 
@@ -75,6 +48,33 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleKeyDown)
 })
 </script>
+
+<template>
+  <div class="modal-flow">
+    <button class="modal-flow__button-delete" @click="openDeleteAccountModal">
+      Удалить аккаунт
+    </button>
+
+    <div v-for="modal in modalStack.getItems()" :key="modal.id" class="modal">
+      <div class="modal__content">
+        <div class="modal__close" @click="closeLastModal">&times;</div>
+
+        <div class="modal__body">
+          <h3 class="modal__title">{{ modal.title }}</h3>
+          <p class="modal__text">{{ modal.content }}</p>
+        </div>
+
+        <div class="modal__buttons">
+          <button v-if="modal.id === 1" @click="openConfirmDeleteModal">
+            {{ modal.buttonText }}
+          </button>
+
+          <button v-if="modal.id === 2" @click="closeAllModals">{{ modal.buttonText }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 @use '@/assets/styles/colors' as *;

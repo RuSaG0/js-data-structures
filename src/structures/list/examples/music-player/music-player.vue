@@ -1,54 +1,6 @@
-<template>
-  <div class="music-player">
-    <div class="music-player__playlist">
-      <div v-if="!songs.length" class="music-player__playlist__empty">Плейлист пуст</div>
-
-      <div
-        v-for="(song, index) in songs"
-        class="music-player__playlist__item"
-        :key="index"
-        :class="{ active: currentSong && song.title === currentSong.value.title }"
-      >
-        {{ song.title }}
-      </div>
-    </div>
-
-    <div class="music-player__progress">
-      <div class="music-player__progress__bar" :style="{ width: progress + '%' }" />
-
-      <audio ref="audioPlayer" @ended="nextSong" @timeupdate="updateProgress" />
-    </div>
-
-    <div class="music-player__navigation">
-      <div class="music-player__controls">
-        <button class="music-player__control prev" @click="prevSong" :disabled="!playlist.head">
-          ←
-        </button>
-
-        <button class="music-player__control play" @click="togglePlayPause">
-          <span v-if="isPlaying">❚❚</span>
-          <span v-else>▶</span>
-        </button>
-
-        <button class="music-player__control next" @click="nextSong" :disabled="!playlist.head">
-          →
-        </button>
-      </div>
-
-      <div class="music-player__current-song">
-        {{ currentSong ? currentSong.value.title : 'Нет песен' }}
-      </div>
-
-      <button class="music-player__delete" @click="removeCurrentSong" :disabled="!currentSong">
-        Удалить текущую песню
-      </button>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { LinkedListNode, DoublyLinkedList } from './DoublyLinkedList.ts'
+import { LinkedListNode, DoublyLinkedList } from './types.ts'
 
 const audioPlayer = ref<HTMLAudioElement | null>(null)
 const playlist = ref(new DoublyLinkedList<{ title: string; src: string }>())
@@ -131,6 +83,54 @@ const prevSong = () => {
 }
 </script>
 
+<template>
+  <div class="music-player">
+    <div class="music-player__playlist">
+      <div v-if="!songs.length" class="music-player__playlist__empty">Плейлист пуст</div>
+
+      <div
+        v-for="(song, index) in songs"
+        class="music-player__playlist__item"
+        :key="index"
+        :class="{ active: currentSong && song.title === currentSong.value.title }"
+      >
+        {{ song.title }}
+      </div>
+    </div>
+
+    <div class="music-player__progress">
+      <div class="music-player__progress__bar" :style="{ width: progress + '%' }" />
+
+      <audio ref="audioPlayer" @ended="nextSong" @timeupdate="updateProgress" />
+    </div>
+
+    <div class="music-player__navigation">
+      <div class="music-player__controls">
+        <button class="music-player__control prev" @click="prevSong" :disabled="!playlist.head">
+          ←
+        </button>
+
+        <button class="music-player__control play" @click="togglePlayPause">
+          <span v-if="isPlaying">❚❚</span>
+          <span v-else>▶</span>
+        </button>
+
+        <button class="music-player__control next" @click="nextSong" :disabled="!playlist.head">
+          →
+        </button>
+      </div>
+
+      <div class="music-player__current-song">
+        {{ currentSong ? currentSong.value.title : 'Нет песен' }}
+      </div>
+
+      <button class="music-player__delete" @click="removeCurrentSong" :disabled="!currentSong">
+        Удалить текущую песню
+      </button>
+    </div>
+  </div>
+</template>
+
 <style scoped lang="scss">
 @use '@/assets/styles/colors' as *;
 @use '@/assets/styles/breakpoints' as *;
@@ -139,6 +139,10 @@ const prevSong = () => {
   padding: 20px;
   background-color: $app-background;
   color: $color-black-text;
+
+  @include mobile {
+    padding: 10px;
+  }
 
   &__playlist {
     display: flex;

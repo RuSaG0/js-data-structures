@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { type Comment } from './types.ts'
+
+defineProps<{
+  comment: Comment
+}>()
+
+const getInitials = (name: string) => {
+  return name.charAt(0).toUpperCase()
+}
+</script>
+
 <template>
   <div class="nested-comment-wrapper">
     <div class="nested-comment">
@@ -17,18 +29,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { type Comment } from './types.ts'
-
-defineProps<{
-  comment: Comment
-}>()
-
-const getInitials = (name: string) => {
-  return name.charAt(0).toUpperCase()
-}
-</script>
 
 <style scoped lang="scss">
 @use '@/assets/styles/colors' as *;

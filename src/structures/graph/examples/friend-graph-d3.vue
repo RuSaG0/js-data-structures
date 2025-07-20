@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { onMounted, ref, onBeforeUnmount } from 'vue'
 import * as d3 from 'd3'
 

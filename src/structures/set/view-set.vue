@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AppSection from '@/components/section/app-section.vue'
-import Tags from '@/structures/set/examples/tags.vue'
-import MusicPlayer from '@/structures/list/examples/music-player/music-player.vue'
+import TagsExample from '@/structures/set/examples/tags-example.vue'
 </script>
 
 <template>
@@ -15,11 +14,11 @@ import MusicPlayer from '@/structures/list/examples/music-player/music-player.vu
     <template #pros> Когда нужно часто проверять на наличие элемента в структуре (has) </template>
 
     <template #example1>
-      <p>
-        <a href="https://premier.one/series/dramy/RU" target="_blank">Киносайт</a>, где фильмы могут быть помечены различными жанрами. Множество может быть
-        использовано для хранения и отображения уникальных жанров, связанных с фильмами.
-      </p>
-      <tags />
+      <a href="https://premier.one/series/dramy/RU" target="_blank">Онлайн-кинотеатр</a>, где фильмы
+      могут быть помечены различными жанрами. Множество может быть использовано для хранения и
+      отображения уникальных жанров, связанных с фильмами.
+
+      <tags-example />
     </template>
   </app-section>
 </template>

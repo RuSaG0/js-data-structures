@@ -1,10 +1,3 @@
-<template>
-  <div class="toast-wrapper">
-    <button class="toast-wrapper__button" @click="showToast">Показать уведомление</button>
-    <ToastItem ref="toastComponent" />
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import ToastItem from './toast-item.vue'
@@ -17,6 +10,13 @@ const showToast = () => {
   }
 }
 </script>
+
+<template>
+  <div class="toast-wrapper">
+    <button class="toast-wrapper__button" @click="showToast">Показать уведомление</button>
+    <ToastItem ref="toastComponent" />
+  </div>
+</template>
 
 <style scoped lang="scss">
 @use '@/assets/styles/colors' as *;

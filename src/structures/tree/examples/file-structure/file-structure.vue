@@ -1,15 +1,3 @@
-<template>
-  <div class="file-structure">
-    <div class="file-structure__file" v-for="file in rootFolder.files" :key="file.name">
-      {{ file.name }} ({{ file.size }}B)
-    </div>
-
-    <div class="file-structure__folders" v-for="folder in rootFolder.folders" :key="folder.name">
-      <file-directory :folder="folder" />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import FileDirectory from './file-directory.vue'
@@ -70,6 +58,18 @@ function makeTree(files: IFile[]) {
   return mapper['']
 }
 </script>
+
+<template>
+  <div class="file-structure">
+    <div class="file-structure__file" v-for="file in rootFolder.files" :key="file.name">
+      {{ file.name }} ({{ file.size }}B)
+    </div>
+
+    <div class="file-structure__folders" v-for="folder in rootFolder.folders" :key="folder.name">
+      <file-directory :folder="folder" />
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .file-structure {
