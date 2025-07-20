@@ -43,7 +43,7 @@ import { ERoutes } from '@/router/routes.ts'
           <b>сделали реальные примеры.</b>
         </p>
         <p>
-          Для этого мы создали проект, исходный код которого доступен на
+          Был создан проект, исходный код которого доступен на
           <a href="https://github.com/RuSaG0/js-data-structures" target="_blank"
             ><img src="@/assets/icons/github-mark.svg" alt="" />Github</a
           >
