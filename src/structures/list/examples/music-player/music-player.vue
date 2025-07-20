@@ -81,6 +81,17 @@ const prevSong = () => {
     }
   }
 }
+
+const handleProgressClick = (event: MouseEvent) => {
+  if (!audioPlayer.value || !audioPlayer.value.duration) return
+
+  const progressBar = event.currentTarget as HTMLElement
+  const clickPosition = event.clientX - progressBar.getBoundingClientRect().left
+  const progressBarWidth = progressBar.clientWidth
+  const clickRatio = clickPosition / progressBarWidth
+
+  audioPlayer.value.currentTime = clickRatio * audioPlayer.value.duration
+}
 </script>
 
 <template>
@@ -98,7 +109,7 @@ const prevSong = () => {
       </div>
     </div>
 
-    <div class="music-player__progress">
+    <div class="music-player__progress" @click="handleProgressClick">
       <div class="music-player__progress__bar" :style="{ width: progress + '%' }" />
 
       <audio ref="audioPlayer" @ended="nextSong" @timeupdate="updateProgress" />
@@ -156,6 +167,7 @@ const prevSong = () => {
   }
 
   &__progress {
+    cursor: pointer;
     height: 10px;
     margin: 10px 0;
     border: 1px solid #000;
