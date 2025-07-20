@@ -10,6 +10,10 @@ defineProps({
     type: String,
     default: '',
   },
+  source: {
+    type: String,
+    default: '',
+  },
 })
 </script>
 
@@ -24,6 +28,10 @@ defineProps({
 
       <h2 v-if="title" class="section__header__title">
         {{ title }}
+
+        <a v-if="source" class="section__header__source" :href="source" target="_blank">
+          <img src="@/assets/icons/github-mark.svg" alt="" />Исходный код
+        </a>
       </h2>
 
       <div v-if="$slots.description" class="section__header__description">
@@ -105,6 +113,11 @@ defineProps({
     }
 
     &__title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
       color: $color-black-text;
       font-size: 32px;
       font-weight: 600;
@@ -117,6 +130,24 @@ defineProps({
 
       @include mobile {
         font-size: 24px;
+      }
+    }
+
+    &__source {
+      white-space: nowrap;
+      font-size: 18px;
+      font-weight: 400;
+
+      @include mobile {
+        font-size: 14px;
+      }
+
+      img {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin-right: 4px;
+        margin-bottom: -2px;
       }
     }
 

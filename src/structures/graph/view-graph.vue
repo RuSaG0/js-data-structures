@@ -4,7 +4,10 @@ import FriendGraphD3 from './examples/friend-graph-d3.vue'
 </script>
 
 <template>
-  <app-section title="Граф">
+  <app-section
+    title="Граф"
+    source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/graph"
+  >
     <template #description>
       Граф — это структура данных, состоящая из узлов и рёбер, где каждый узел представляет объект,
       а рёбра — связи между этими объектами. В frontend-разработке графы могут быть использованы для

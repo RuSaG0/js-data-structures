@@ -5,7 +5,10 @@ import PaintCanvas from '@/structures/list/examples/paint/paint-canvas.vue'
 </script>
 
 <template>
-  <app-section title="Связный список">
+  <app-section
+    title="Связный список"
+    source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/list"
+  >
     <template #description>
       <p>
         Связный список — это структура данных, состоящая из узлов, где каждый узел содержит данные и

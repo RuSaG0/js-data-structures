@@ -4,7 +4,10 @@ import TagsExample from '@/structures/set/examples/tags-example.vue'
 </script>
 
 <template>
-  <app-section title="Множество">
+  <app-section
+    title="Множество"
+    source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/set"
+  >
     <template #description>
       Множество — это структура данных, состоящая из уникальных элементов без определённого порядка.
       В frontend-разработке множества могут быть использованы для представления уникальных тегов или

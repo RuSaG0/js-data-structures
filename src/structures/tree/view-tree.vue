@@ -38,7 +38,10 @@ const comments = ref<Comment[]>([
 </script>
 
 <template>
-  <app-section title="Дерево">
+  <app-section
+    title="Дерево"
+    source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/tree"
+  >
     <template #description>
       Дерево — это структура данных, состоящая из узлов, где каждый узел имеет значение и список
       ссылок на дочерние узлы. В frontend-разработке деревья могут быть использованы для

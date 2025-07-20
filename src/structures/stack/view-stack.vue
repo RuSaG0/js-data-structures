@@ -4,7 +4,10 @@ import ModalFlowCase from '@/structures/stack/examples/modal-flow-case.vue'
 </script>
 
 <template>
-  <app-section title="Стек">
+  <app-section
+    title="Стек"
+    source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/stack"
+  >
     <template #description>
       Стек — это структура данных, работающая по принципу LIFO (Last In, First Out), что означает,
       что последний добавленный элемент будет первым извлечён. В frontend-разработке стек полезен

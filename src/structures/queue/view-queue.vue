@@ -5,7 +5,10 @@ import ToastWrapper from '@/structures/queue/examples/notifications/toast-wrappe
 </script>
 
 <template>
-  <app-section title="Очередь">
+  <app-section
+    title="Очередь"
+    source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/queue"
+  >
     <template #description>
       Очередь — это структура данных, работающая по принципу FIFO (First In, First Out), что
       означает, что первый добавленный элемент будет первым извлечён.
