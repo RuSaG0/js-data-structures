@@ -41,22 +41,27 @@ const updateProgress = () => {
 }
 
 const removeCurrentSong = () => {
-  if (!currentSong.value) return
+  if (!currentSong.value) return;
 
-  const currentSongTitle = currentSong.value.value.title
-  playlist.value.removeCurrent()
-  songs.value = songs.value.filter((song) => song.title !== currentSongTitle)
+  const currentSongTitle = currentSong.value.value.title;
+  playlist.value.removeCurrent();
+  songs.value = songs.value.filter((song) => song.title !== currentSongTitle);
 
   if (playlist.value.current) {
-    currentSong.value = playlist.value.current
+    currentSong.value = playlist.value.current;
     if (audioPlayer.value) {
-      audioPlayer.value.src = currentSong.value.value.src
+      audioPlayer.value.src = currentSong.value.value.src;
       if (isPlaying.value) {
-        audioPlayer.value.play()
+        audioPlayer.value.play();
       }
     }
   } else {
-    currentSong.value = null
+    currentSong.value = null;
+    if (audioPlayer.value) {
+      audioPlayer.value.pause();
+      audioPlayer.value.src = '';
+      isPlaying.value = false;
+    }
   }
 }
 
