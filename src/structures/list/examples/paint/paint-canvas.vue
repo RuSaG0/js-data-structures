@@ -8,9 +8,7 @@ let ctx: CanvasRenderingContext2D | null = null
 let isDrawing = false
 let lastX = 0
 let lastY = 0
-
 const stateList = new LinkedList<ImageData>()
-
 const canUndo = ref(false)
 const canRedo = ref(false)
 
@@ -24,7 +22,6 @@ onMounted(() => {
       updateCanvasWidth()
     }
   }
-
   window.addEventListener('resize', updateCanvasWidth)
 })
 
@@ -32,28 +29,39 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateCanvasWidth)
 })
 
-const startDrawing = (e: MouseEvent) => {
-  isDrawing = true
-  if (ctx && canvas.value) {
-    const rect = canvas.value.getBoundingClientRect()
-    lastX = e.clientX - rect.left
-    lastY = e.clientY - rect.top
+const getEventCoordinates = (e: MouseEvent | TouchEvent) => {
+  if (!canvas.value) return { clientX: 0, clientY: 0 }
+  const rect = canvas.value.getBoundingClientRect()
+  if ('touches' in e) {
+    return {
+      clientX: e.touches[0].clientX - rect.left,
+      clientY: e.touches[0].clientY - rect.top
+    }
+  } else {
+    return {
+      clientX: e.clientX - rect.left,
+      clientY: e.clientY - rect.top
+    }
   }
 }
 
-const draw = (e: MouseEvent) => {
-  if (!isDrawing || !ctx || !canvas.value) return
-  const rect = canvas.value.getBoundingClientRect()
-  const currentX = e.clientX - rect.left
-  const currentY = e.clientY - rect.top
+const startDrawing = (e: MouseEvent | TouchEvent) => {
+  isDrawing = true
+  const { clientX, clientY } = getEventCoordinates(e)
+  lastX = clientX
+  lastY = clientY
+}
 
+const draw = (e: MouseEvent | TouchEvent) => {
+  if (!isDrawing || !ctx || !canvas.value) return
+  e.preventDefault()
+  const { clientX, clientY } = getEventCoordinates(e)
   ctx.beginPath()
   ctx.moveTo(lastX, lastY)
-  ctx.lineTo(currentX, currentY)
+  ctx.lineTo(clientX, clientY)
   ctx.stroke()
-
-  lastX = currentX
-  lastY = currentY
+  lastX = clientX
+  lastY = clientY
 }
 
 const stopDrawing = () => {
@@ -115,9 +123,11 @@ const updateCanvasWidth = () => {
         @mousedown="startDrawing"
         @mousemove="draw"
         @mouseup="stopDrawing"
+        @touchstart="startDrawing"
+        @touchmove="draw"
+        @touchend="stopDrawing"
       />
     </div>
-
     <div class="paint__controls">
       <button @click="undo" :disabled="!canUndo">Undo</button>
       <button @click="redo" :disabled="!canRedo">Redo</button>
@@ -128,7 +138,6 @@ const updateCanvasWidth = () => {
 
 <style lang="scss" scoped>
 @use '@/assets/styles/colors' as *;
-
 .paint {
   display: flex;
   flex-direction: column;
