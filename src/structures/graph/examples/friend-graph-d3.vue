@@ -27,7 +27,7 @@ function initGraph() {
     { id: 'Дарья' },
     { id: 'Елена' },
     { id: 'Фёдор' },
-    { id: 'Галина' },
+    { id: 'Артем' },
   ]
 
   const links = [
