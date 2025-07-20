@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import PageHome from '@/views/page-home.vue'
 import PageList from '@/views/page-list.vue'
 import PageStack from '@/views/page-stack.vue'
@@ -10,7 +10,7 @@ import PageSet from '@/views/page-set.vue'
 import { ERoutes } from '@/router/routes.ts'
 
 const router = createRouter({
-  history: createWebHistory('/js-data-structures/'),
+  history: createWebHashHistory('/js-data-structures/'),
   routes: [
     {
       path: '/',
