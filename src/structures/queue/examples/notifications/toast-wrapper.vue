@@ -6,7 +6,7 @@ const toastComponent = ref<InstanceType<typeof ToastItem> | null>(null)
 
 const showToast = () => {
   if (toastComponent.value) {
-    toastComponent.value.showToast('Это уведомление!')
+    toastComponent.value.showToast('Это уведомление №')
   }
 }
 </script>

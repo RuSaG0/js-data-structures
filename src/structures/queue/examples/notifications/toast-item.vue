@@ -22,7 +22,7 @@ defineExpose({
 <template>
   <div class="toast-container">
     <div v-for="toast in toasts" :key="toast.id" class="toast">
-      {{ toast.message }} {{ toast.id }}
+      {{ toast.message }}{{ toast.id }}
     </div>
   </div>
 </template>

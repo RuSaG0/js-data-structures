@@ -19,11 +19,12 @@ export class ToastQueue extends Queue<ToastItem> {
       this.dequeue();
     }
 
-    this.id++;
     const item: ToastItem = {
       id: this.id,
       message,
     };
+
+    this.id++;
 
     this.enqueue(item);
     return item;
