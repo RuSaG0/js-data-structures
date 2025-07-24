@@ -201,6 +201,7 @@ const handleProgressClick = (event: MouseEvent) => {
     }
 
     button {
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -233,6 +234,7 @@ const handleProgressClick = (event: MouseEvent) => {
   }
 
   &__delete {
+    cursor: pointer;
     height: 38px;
     margin-left: auto;
     padding: 4px 10px;

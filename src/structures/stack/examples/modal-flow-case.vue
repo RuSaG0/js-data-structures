@@ -81,6 +81,7 @@ onBeforeUnmount(() => {
 
 .modal-flow {
   &__button-delete {
+    cursor: pointer;
     height: 38px;
     margin-top: 10px;
     padding: 4px 10px;
@@ -135,6 +136,7 @@ onBeforeUnmount(() => {
 
   &__buttons {
     button {
+      cursor: pointer;
       margin-top: 10px;
       padding: 4px 10px;
       background: $color-accent;

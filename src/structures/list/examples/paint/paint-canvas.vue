@@ -159,6 +159,7 @@ const updateCanvasWidth = () => {
     gap: 4px;
 
     button {
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;

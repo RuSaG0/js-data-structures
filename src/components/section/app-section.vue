@@ -77,7 +77,7 @@ defineProps({
   </section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use '@/assets/styles/breakpoints' as *;
 @use '@/assets/styles/colors' as *;
 @use '@/assets/styles/fonts' as *;
