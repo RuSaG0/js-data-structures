@@ -6,6 +6,8 @@ import PageQueue from '@/views/page-queue.vue'
 import PageTree from '@/views/page-tree.vue'
 import PageGraph from '@/views/page-graph.vue'
 import PageSet from '@/views/page-set.vue'
+import PageArray from '@/views/page-array.vue'
+import PageMap from '@/views/page-map.vue'
 
 import { ERoutes } from '@/router/routes.ts'
 
@@ -46,6 +48,16 @@ const router = createRouter({
       path: ERoutes.Set,
       name: 'set',
       component: PageSet,
+    },
+    {
+      path: ERoutes.Array,
+      name: 'array',
+      component: PageArray,
+    },
+    {
+      path: ERoutes.Map,
+      name: 'map',
+      component: PageMap,
     },
   ],
 })

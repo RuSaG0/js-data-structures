@@ -6,4 +6,6 @@ export const enum ERoutes {
   Tree = '/tree',
   Graph = '/graph',
   Set = '/set',
+  Array = '/array',
+  Map = '/map',
 }
