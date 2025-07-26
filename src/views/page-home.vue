@@ -22,6 +22,12 @@ import { ERoutes } from '@/router/routes.ts'
         <router-link :to="ERoutes.Graph">
           <span>Граф</span>
         </router-link>
+        <router-link :to="ERoutes.Array">
+          <span>Массив</span>
+        </router-link>
+        <router-link :to="ERoutes.Map">
+          <span>Карта</span>
+        </router-link>
         <router-link :to="ERoutes.Set">
           <span>Множество</span>
         </router-link>
