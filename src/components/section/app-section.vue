@@ -221,6 +221,10 @@ defineProps({
         font-weight: 400;
         font-size: 18px;
 
+        @include mobile {
+          font-size: 14px;
+        }
+
         img {
           display: inline-block;
           width: 1em;

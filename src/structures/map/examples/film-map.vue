@@ -1,34 +1,32 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-const movie = ref(
-  {
-    id: 1,
-    title: 'Брат',
-    imgSrc: './posters/1.jpg',
-    tags: [
-      ['origin', 'Российские'],
-      ['type', 'Фильмы'],
-    ],
-  }
-)
+const movie = ref({
+  id: 1,
+  title: 'Брат',
+  imgSrc: './posters/1.jpg',
+  tags: [
+    ['origin', 'Российские'],
+    ['type', 'Фильмы'],
+  ],
+})
 </script>
 
 <template>
-    <div class="movies-list__item">
-      <div class="movies-list__item__poster">
-        <img :src="movie.imgSrc" alt="" />
-      </div>
-      <div class="movies-list__item__title">{{ movie.title }}</div>
-      <div class="movies-list__item__tags">
-        <span
-          v-for="tag in movie.tags.map(([_, val]) => val)"
-          :key="tag"
-          class="movies-list__item__tag"
-          :class="tag"
-        >{{ tag }}
-        </span>
-      </div>
+  <div class="movies-list__item">
+    <div class="movies-list__item__poster">
+      <img :src="movie.imgSrc" alt="" />
     </div>
+    <div class="movies-list__item__title">{{ movie.title }}</div>
+    <div class="movies-list__item__tags">
+      <span
+        v-for="tag in movie.tags.map(([_, val]) => val)"
+        :key="tag"
+        class="movies-list__item__tag"
+        :class="tag"
+        >{{ tag }}
+      </span>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -42,6 +40,8 @@ $color-series: #d500f9;
 
 .movies-list {
   &__item {
+    max-width: 300px;
+    margin-top: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     transition: box-shadow 0.3s ease;
