@@ -107,6 +107,9 @@ defineProps({
 @use '@/assets/styles/fonts' as *;
 
 .section {
+  width: 100%;
+
+
   & + & {
     margin-top: 40px;
   }
