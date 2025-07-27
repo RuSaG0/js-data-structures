@@ -16,13 +16,13 @@ const toggle = () => {
 <template>
   <div class="folder">
     <div class="folder__header" @click="toggle">
-      <span>{{ folder.name || 'Root' }}</span>
+      <span>📁 {{ folder.name || 'Root' }}</span>
       <span>{{ isOpen ? '-' : '+' }}</span>
     </div>
 
     <div v-if="isOpen" class="folder__content">
       <div v-for="file in folder.files" :key="file.name" class="folder__file">
-        {{ file.name }} ({{ file.size }}B)
+        📄 {{ file.name }} ({{ file.size }}B)
       </div>
 
       <div v-for="subFolder in folder.folders" :key="subFolder.name">

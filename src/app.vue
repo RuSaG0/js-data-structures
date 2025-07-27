@@ -190,7 +190,7 @@ watch(
 
   @include mobile {
     max-height: 100dvh;
-    padding: 10px 10px 40px 10px;
+    padding: 10px 10px 80px 10px;
   }
 }
 

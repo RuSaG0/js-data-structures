@@ -61,12 +61,12 @@ function makeTree(files: IFile[]) {
 
 <template>
   <div class="file-structure">
-    <div class="file-structure__file" v-for="file in rootFolder.files" :key="file.name">
-      {{ file.name }} ({{ file.size }}B)
-    </div>
-
     <div class="file-structure__folders" v-for="folder in rootFolder.folders" :key="folder.name">
       <file-directory :folder="folder" />
+    </div>
+
+    <div class="file-structure__file" v-for="file in rootFolder.files" :key="file.name">
+      📄 {{ file.name }} ({{ file.size }}B)
     </div>
   </div>
 </template>

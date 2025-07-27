@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ERoutes } from '@/router/routes.ts'
-
 defineProps({
   hasBreadcrumbs: {
     type: Boolean,
