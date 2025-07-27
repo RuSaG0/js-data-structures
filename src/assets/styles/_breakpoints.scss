@@ -32,13 +32,13 @@ $from_mobile: #{$mobile + 1px};
 
 // from
 @mixin from-tablet {
-  @media (min-width: $tablet) {
+  @media (min-width: $from_tablet) {
     @content;
   }
 }
 
 @mixin from-mobile {
-  @media (min-width: $mobile) {
+  @media (min-width: $from_mobile) {
     @content;
   }
 }

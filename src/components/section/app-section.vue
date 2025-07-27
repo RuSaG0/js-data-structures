@@ -20,11 +20,11 @@ defineProps({
 <template>
   <section class="section">
     <section class="section__header">
-      <div v-if="hasBreadcrumbs" class="section__header__breadcrumbs">
-        <router-link :to="ERoutes.Main">Главная</router-link>
-        <span>/</span>
-        <span>{{ title }}</span>
-      </div>
+      <!--      <div v-if="hasBreadcrumbs" class="section__header__breadcrumbs">-->
+      <!--        <router-link :to="ERoutes.Main">Главная</router-link>-->
+      <!--        <span>/</span>-->
+      <!--        <span>{{ title }}</span>-->
+      <!--      </div>-->
 
       <h2 v-if="title" class="section__header__title">
         {{ title }}
@@ -134,6 +134,7 @@ defineProps({
     }
 
     &__source {
+      flex-shrink: 0;
       white-space: nowrap;
       font-size: 18px;
       font-weight: 400;

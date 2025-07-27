@@ -1,39 +1,9 @@
 <script setup lang="ts">
 import AppSection from '@/components/section/app-section.vue'
-import { ERoutes } from '@/router/routes.ts'
 </script>
 
 <template>
   <div>
-    <div class="menu">
-      <div class="menu__items">
-        <router-link :to="ERoutes.List">
-          <span>Связный список</span>
-        </router-link>
-        <router-link :to="ERoutes.Stack">
-          <span>Стек</span>
-        </router-link>
-        <router-link :to="ERoutes.Queue">
-          <span>Очередь</span>
-        </router-link>
-        <router-link :to="ERoutes.Tree">
-          <span>Дерево</span>
-        </router-link>
-        <router-link :to="ERoutes.Graph">
-          <span>Граф</span>
-        </router-link>
-        <router-link :to="ERoutes.Array">
-          <span>Массив</span>
-        </router-link>
-        <router-link :to="ERoutes.Map">
-          <span>Карта</span>
-        </router-link>
-        <router-link :to="ERoutes.Set">
-          <span>Множество</span>
-        </router-link>
-      </div>
-    </div>
-
     <app-section title="О чем эта статья?" :has-breadcrumbs="false">
       <div class="about">
         <p>
@@ -104,23 +74,6 @@ import { ERoutes } from '@/router/routes.ts'
     margin: 0;
     list-style: none;
     padding-left: 0;
-  }
-}
-
-.menu {
-  margin-bottom: 10px;
-
-  @include from-mobile {
-    display: none;
-  }
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-  }
-
-  p {
-    margin: 0 0 4px 0;
   }
 }
 </style>
