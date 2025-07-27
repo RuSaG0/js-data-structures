@@ -8,6 +8,16 @@ import ToastWrapper from '@/structures/queue/examples/notifications/toast-wrappe
   <app-section
     title="Очередь"
     source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/queue"
+    :examples="[
+      {
+        title: 'Очередь загрузки файлов',
+        link: 'https://github.com/RuSaG0/js-data-structures/blob/master/src/structures/queue/examples/file-upload/file-uploaded-queue.vue',
+      },
+      {
+        title: 'Очередь уведомлений',
+        link: 'https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/queue/examples/notifications',
+      },
+    ]"
   >
     <template #description>
       Очередь — это структура данных, работающая по принципу FIFO (First In, First Out), что

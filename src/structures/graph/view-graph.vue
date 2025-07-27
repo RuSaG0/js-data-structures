@@ -7,6 +7,12 @@ import FriendGraphD3 from './examples/friend-graph-d3.vue'
   <app-section
     title="Граф"
     source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/graph"
+    :examples="[
+      {
+        title: 'Социальная сеть',
+        link: 'https://github.com/RuSaG0/js-data-structures/blob/master/src/structures/graph/examples/friend-graph-d3.vue',
+      },
+    ]"
   >
     <template #description>
       Граф — это структура данных, состоящая из узлов и рёбер, где каждый узел представляет объект,

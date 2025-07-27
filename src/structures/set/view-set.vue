@@ -7,6 +7,12 @@ import TagsExample from '@/structures/set/examples/tags-example.vue'
   <app-section
     title="Множество"
     source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/set"
+    :examples="[
+      {
+        title: 'Выборка по свойству',
+        link: 'https://github.com/RuSaG0/js-data-structures/blob/master/src/structures/set/examples/tags-example.vue',
+      },
+    ]"
   >
     <template #description>
       Множество — это структура данных, состоящая из уникальных элементов без определённого порядка.

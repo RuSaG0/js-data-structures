@@ -8,6 +8,16 @@ import PaintCanvas from '@/structures/list/examples/paint/paint-canvas.vue'
   <app-section
     title="Связный список"
     source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/list"
+    :examples="[
+      {
+        title: 'Музыкальный плеер',
+        link: 'https://github.com/RuSaG0/js-data-structures/blob/master/src/structures/list/examples/music-player/music-player.vue',
+      },
+      {
+        title: 'Графический редактор',
+        link: 'https://github.com/RuSaG0/js-data-structures/blob/master/src/structures/list/examples/paint/paint-canvas.vue',
+      },
+    ]"
   >
     <template #description>
       <p>

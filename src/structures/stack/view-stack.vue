@@ -7,6 +7,12 @@ import ModalFlowCase from '@/structures/stack/examples/modal-flow-case.vue'
   <app-section
     title="Стек"
     source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/stack"
+    :examples="[
+      {
+        title: 'Последовательные модальные окна',
+        link: 'https://github.com/RuSaG0/js-data-structures/blob/master/src/structures/stack/examples/modal-flow-case.vue',
+      },
+    ]"
   >
     <template #description>
       Стек — это структура данных, работающая по принципу LIFO (Last In, First Out), что означает,

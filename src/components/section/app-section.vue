@@ -12,6 +12,10 @@ defineProps({
     type: String,
     default: '',
   },
+  examples: {
+    type: Array<{ title: string; link: string }>,
+    default: [],
+  },
 })
 </script>
 
@@ -28,7 +32,7 @@ defineProps({
         {{ title }}
 
         <a v-if="source" class="section__header__source" :href="source" target="_blank">
-          <img src="@/assets/icons/github-mark.svg" alt="" />Исходный код
+          <img src="@/assets/icons/github-mark.svg" alt="" />Исходный код страницы
         </a>
       </h2>
 
@@ -56,13 +60,35 @@ defineProps({
 
       <div class="section__body__examples">
         <div v-if="$slots.example1" class="section__body__example">
-          <h3 class="section__body__example__title">Пример #1</h3>
+          <h3 v-if="examples[0]" class="section__body__example__title">
+            <span>#1. {{ examples[0].title }}</span>
+
+            <a
+              v-if="examples[0].link"
+              class="section__body__example__source"
+              :href="examples[0].link"
+              target="_blank"
+            >
+              <img src="@/assets/icons/github-mark.svg" alt="" />Исходный код примера
+            </a>
+          </h3>
 
           <slot name="example1" />
         </div>
 
         <div v-if="$slots.example2" class="section__body__example">
-          <h3 class="section__body__example__title">Пример #2</h3>
+          <h3 v-if="examples[1]" class="section__body__example__title">
+            <span>#2. {{ examples[1].title }}</span>
+
+            <a
+              v-if="examples[1].link"
+              class="section__body__example__source"
+              :href="examples[1].link"
+              target="_blank"
+            >
+              <img src="@/assets/icons/github-mark.svg" alt="" />Исходный код примера
+            </a>
+          </h3>
 
           <slot name="example2" />
         </div>
@@ -182,6 +208,26 @@ defineProps({
 
       &__title {
         margin: 0 0 6px !important;
+        font-style: normal !important;
+
+        span {
+          font-style: italic;
+        }
+      }
+
+      &__source {
+        margin-left: 8px;
+        white-space: nowrap;
+        font-weight: 400;
+        font-size: 18px;
+
+        img {
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          margin-right: 4px;
+          margin-bottom: -2px;
+        }
       }
 
       p {

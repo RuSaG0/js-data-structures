@@ -6,7 +6,8 @@ import { type Comment } from './examples/nested-comments/types.ts'
 import FileStructure from '@/structures/tree/examples/file-structure/file-structure.vue'
 
 const post = ref({
-  text: 'Стоит ли знать алгоритмы и структуры данных во Frontend-разработке?\n' +
+  text:
+    'Стоит ли знать алгоритмы и структуры данных во Frontend-разработке?\n' +
     'Знание алгоритмов и структур данных может значительно повысить эффективность работы Frontend-разработчика. Это помогает не только в оптимизации производительности приложений, но и в решении сложных задач, связанных с обработкой данных. Однако, многие считают, что для Frontend-разработки это не так критично, как для Backend.',
 })
 
@@ -42,6 +43,16 @@ const comments = ref<Comment[]>([
   <app-section
     title="Дерево"
     source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/tree"
+    :examples="[
+      {
+        title: 'Комментарии',
+        link: 'https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/tree/examples/nested-comments',
+      },
+      {
+        title: 'Файловая структура',
+        link: 'https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/tree/examples/file-structure',
+      },
+    ]"
   >
     <template #description>
       Дерево — это структура данных, состоящая из узлов, где каждый узел имеет значение и список

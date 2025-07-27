@@ -7,25 +7,36 @@ import FilmsList from '@/structures/array/examples/films-list.vue'
   <app-section
     title="Массив"
     source="https://github.com/RuSaG0/js-data-structures/tree/master/src/structures/array"
+    :examples="[
+      {
+        title: 'Список фильмов',
+        link: 'https://github.com/RuSaG0/js-data-structures/blob/master/src/structures/array/examples/films-list.vue',
+      },
+    ]"
   >
     <template #description>
-      Массив — это одна из самых распространённых структур данных в программировании. Они используются для хранения коллекции элементов.
+      Массив — это одна из самых распространённых структур данных в программировании. Они
+      используются для хранения коллекции элементов.
     </template>
 
     <template #example1>
-      <p>
-        Список фильмов
-      </p>
       <films-list />
     </template>
 
     <div class="explanation">
       <h3>Важный момент</h3>
       <p>
-        На самом деле есть 2 похожие на себя структуры данных: массив (или статический массив) и вектор (динамический массив).
+        На самом деле есть 2 похожие на себя структуры данных: массив (или статический массив) и
+        вектор (динамический массив).
       </p>
       <p>
-        Записи в виде <code>const arr = []; </code> или <code> const arr = new Array() </code> на самом деле являются векторами. Массивом же является, например, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array" target="_blank">BigInt64Array</a>
+        Записи в виде <code>const arr = []; </code> или <code> const arr = new Array() </code> на
+        самом деле являются векторами. Массивом же является, например,
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array"
+          target="_blank"
+          >BigInt64Array</a
+        >
       </p>
     </div>
   </app-section>
