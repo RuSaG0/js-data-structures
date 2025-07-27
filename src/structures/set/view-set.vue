@@ -20,7 +20,9 @@ import TagsExample from '@/structures/set/examples/tags-example.vue'
       категорий.
     </template>
 
-    <template #pros> Когда нужно часто проверять на наличие элемента в структуре (has) </template>
+    <template #pros> Когда нужно хранить уникальные элементы без повторений и быстро проверять их наличие (has). </template>
+
+    <template #cons> Не подойдет, когда нужен доступ к элементу по индексу или когда допустимы повторы. </template>
 
     <template #example1>
       <a href="https://premier.one/series/dramy/RU" target="_blank">Онлайн-кинотеатр</a>, где фильмы

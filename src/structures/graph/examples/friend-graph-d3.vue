@@ -41,16 +41,14 @@ function initGraph() {
     { source: 'Дарья', target: 'Фёдор' },
   ]
 
-  // Создаем SVG
   svg = d3
     .select(graph.value)
     .append('svg')
-    .attr('width', '100%') // SVG занимает 100% ширины родителя
-    .attr('height', height) // Высота задается динамически
-    .attr('viewBox', `0 0 ${width} ${height}`) // viewBox для масштабирования
-    .attr('preserveAspectRatio', 'xMidYMid meet') // Сохранение пропорций
+    .attr('width', '100%')
+    .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
 
-  // Создаем симуляцию
   simulation = d3
     .forceSimulation(nodes)
     .force(
@@ -63,7 +61,6 @@ function initGraph() {
     .force('charge', d3.forceManyBody().strength(-300))
     .force('center', d3.forceCenter(width / 2, height / 2))
 
-  // Добавляем линии
   const link = svg
     .append('g')
     .attr('stroke', '#aaa')
@@ -72,7 +69,6 @@ function initGraph() {
     .join('line')
     .attr('stroke-width', 2)
 
-  // Добавляем узлы
   const node = svg
     .append('g')
     .attr('stroke', '#fff')
@@ -84,7 +80,6 @@ function initGraph() {
     .attr('fill', '#69b3a2')
     .call(drag(simulation))
 
-  // Добавляем метки
   const label = svg
     .append('g')
     .selectAll('text')
@@ -95,7 +90,6 @@ function initGraph() {
     .attr('dx', 18)
     .attr('dy', 4)
 
-  // Обновляем позиции при каждом тике
   simulation.on('tick', () => {
     link
       .attr('x1', (d) => d.source.x)
@@ -109,19 +103,16 @@ function initGraph() {
 }
 
 function handleResize() {
-  // Получаем новые размеры контейнера
   const containerWidth = graph.value?.clientWidth ?? width
   const containerHeight = height
 
-  // Обновляем размеры SVG
   svg
     ?.attr('width', containerWidth)
     .attr('height', containerHeight)
     .attr('viewBox', `0 0 ${containerWidth} ${containerHeight}`)
 
-  // Обновляем центр силы для симуляции
   simulation?.force('center', d3.forceCenter(containerWidth / 2, containerHeight / 2))
-  simulation?.alpha(1).restart() // Перезапускаем симуляцию для применения изменений
+  simulation?.alpha(1).restart()
 }
 
 function drag(_simulation: d3.Simulation<d3.SimulationNodeDatum, undefined> | null) {
