@@ -51,7 +51,7 @@ defineProps({
       </div>
 
       <div v-if="$slots.cons" class="section__body__cons">
-        <h3 class="section__body__cons__title">Недостатки</h3>
+        <h3 class="section__body__cons__title">Особенности</h3>
 
         <div class="section__body__cons__text">
           <slot name="cons" />
