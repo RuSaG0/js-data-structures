@@ -25,10 +25,9 @@ import TagsExample from '@/structures/set/examples/tags-example.vue'
     <template #cons> Не подойдет, когда нужен доступ к элементу по индексу или когда допустимы повторы. </template>
 
     <template #example1>
-      <a href="https://premier.one/series/dramy/RU" target="_blank">Онлайн-кинотеатр</a>, где фильмы
+      Рассмотрим пример, как в <a href="https://premier.one/series/dramy/RU" target="_blank">Онлайн-кинотеатре PREMIER</a>, где фильмы
       могут быть помечены различными жанрами. Множество может быть использовано для хранения и
       отображения уникальных жанров, связанных с фильмами.
-
       <tags-example />
     </template>
   </app-section>
