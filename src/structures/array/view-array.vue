@@ -17,6 +17,7 @@ import FilmsList from '@/structures/array/examples/films-list.vue'
     <template #description>
       Массив — это одна из самых распространённых структур данных в программировании. Они
       используются для хранения коллекции элементов.
+      <img src="/structures/array.svg" alt="" />
     </template>
 
     <template #pros>

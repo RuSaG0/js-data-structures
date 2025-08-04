@@ -18,6 +18,7 @@ import ModalFlowCase from '@/structures/stack/examples/modal-flow-case.vue'
       Стек — это структура данных, работающая по принципу LIFO (Last In, First Out), что означает,
       что последний добавленный элемент будет первым извлечён. Во frontend-разработке стек полезен
       для управления историей навигации или для валидации данных.
+      <img src="/structures/stack.svg" alt="" />
     </template>
 
     <template #pros>

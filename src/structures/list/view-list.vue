@@ -35,6 +35,8 @@ import PaintCanvas from '@/structures/list/examples/paint/paint-canvas.vue'
           эффективно управлять историей изменений.
         </li>
       </ul>
+
+      <img src="/structures/list.svg" alt="" />
     </template>
 
     <template #example1>
@@ -51,7 +53,7 @@ import PaintCanvas from '@/structures/list/examples/paint/paint-canvas.vue'
       Преимущество связного списка заключается в том, что удаление элемента выполняется за <b>константное время O(1)</b>.
       В то время как в массиве для удаления элемента необходимо не только удалить сам
       элемент, но и сдвинуть все последующие элементы. В связном списке достаточно изменить
-      ссылки prev и next у соответствующей ноды.
+      ссылки prev и next у соответствующих нод.
     </template>
 
     <template #cons>

@@ -22,6 +22,7 @@ import ToastWrapper from '@/structures/queue/examples/notifications/toast-wrappe
     <template #description>
       Очередь — это структура данных, работающая по принципу FIFO (First In, First Out), что
       означает, что первый добавленный элемент будет первым извлечён.
+      <img src="/structures/queue.svg" alt="" />
     </template>
 
     <template #pros>

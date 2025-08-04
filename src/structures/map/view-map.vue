@@ -16,6 +16,7 @@ import FilmMap from '@/structures/map/examples/film-map.vue'
   >
     <template #description>
       Карта (как и объект или хэш-таблица) — коллекция пар ключ/значение.
+      <img src="/structures/map.svg" alt="" />
     </template>
 
     <template #pros>

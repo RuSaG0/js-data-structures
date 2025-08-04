@@ -192,6 +192,12 @@ defineProps({
       > :last-child {
         margin-bottom: 0 !important;
       }
+
+      :deep(> img:first-child) {
+        display: block;
+        width: 100%;
+        margin-top: 10px !important;
+      }
     }
   }
 
