@@ -109,7 +109,6 @@ defineProps({
 .section {
   width: 100%;
 
-
   & + & {
     margin-top: 40px;
   }
@@ -193,7 +192,7 @@ defineProps({
         margin-bottom: 0 !important;
       }
 
-      :deep(> img:first-child) {
+      :deep(.structure-img > img) {
         display: block;
         width: 100%;
         margin-top: 10px !important;
