@@ -60,12 +60,14 @@ function toggleTag(category: string, tag: string) {
 
 const filteredMovies = computed(() => {
   return movies.value.filter((movie) => {
+    const movieTags = Object.fromEntries(movie.tags);
+
     return Object.entries(selectedTags.value).every(([category, tagSet]) => {
-      if (tagSet.size === 0) return true
-      return movie.tags.some(([cat, tag]) => cat === category && tagSet.has(tag))
-    })
-  })
-})
+      if (tagSet.size === 0) return true;
+      return tagSet.has(movieTags[category]);
+    });
+  });
+});
 </script>
 
 <template>
