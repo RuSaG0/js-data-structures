@@ -10,9 +10,9 @@ const progress = ref<number>(0)
 
 // Пример списка песен
 const songs = ref([
-  { title: '🦄 Песня 1', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { title: '🤑 Песня 2', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-  { title: '🤖 Песня 3', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+  { title: '🦄 Песня 1', src: './music/SoundHelix-Song-1.mp3' },
+  { title: '🤑 Песня 2', src: './music/SoundHelix-Song-2.mp3' },
+  { title: '🤖 Песня 3', src: './music/SoundHelix-Song-3.mp3' },
 ])
 
 onMounted(() => {
