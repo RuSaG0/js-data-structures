@@ -26,7 +26,7 @@ const movies = ref<Movie[]>([
   { id: 4, title: 'Мажор', origin: 'Ru', type: 'Series' },
 ])
 
-const allTags: Record<Category, Origin[] | Type[]> = {
+const allTags: Record<Category, readonly (Origin | Type)[]> = {
   origin: ['Ru', 'Foreign'],
   type: ['Movie', 'Series'],
 }
