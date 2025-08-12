@@ -1,73 +1,67 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-const movies = ref([
-  {
-    id: 1,
-    title: 'Брат',
-    tags: [
-      ['origin', 'Российские'],
-      ['type', 'Фильмы'],
-    ],
-  },
-  {
-    id: 2,
-    title: 'Интерстеллар',
-    tags: [
-      ['origin', 'Зарубежные'],
-      ['type', 'Фильмы'],
-    ],
-  },
-  {
-    id: 3,
-    title: 'Во все тяжкие',
-    tags: [
-      ['origin', 'Зарубежные'],
-      ['type', 'Сериалы'],
-    ],
-  },
-  {
-    id: 4,
-    title: 'Мажор',
-    tags: [
-      ['origin', 'Российские'],
-      ['type', 'Сериалы'],
-    ],
-  },
-])
 
-const allTags = {
-  origin: ['Российские', 'Зарубежные'],
-  type: ['Фильмы', 'Сериалы'],
+type Origin = 'Ru' | 'Foreign'
+type Type = 'Movie' | 'Series'
+type Category = 'origin' | 'type'
+
+interface Movie {
+  id: number
+  title: string
+  origin: Origin
+  type: Type
 }
 
-const selectedTags = ref<Record<string, Set<string>>>({
+const tagLabels: Record<Origin | Type, string> = {
+  Ru: 'Российские',
+  Foreign: 'Зарубежные',
+  Movie: 'Фильмы',
+  Series: 'Сериалы'
+}
+
+const movies = ref<Movie[]>([
+  { id: 1, title: 'Брат', origin: 'Ru', type: 'Movie' },
+  { id: 2, title: 'Интерстеллар', origin: 'Foreign', type: 'Movie' },
+  { id: 3, title: 'Во все тяжкие', origin: 'Foreign', type: 'Series' },
+  { id: 4, title: 'Мажор', origin: 'Ru', type: 'Series' },
+])
+
+const allTags: Record<Category, Origin[] | Type[]> = {
+  origin: ['Ru', 'Foreign'],
+  type: ['Movie', 'Series'],
+}
+
+interface SelectedTags {
+  origin: Set<Origin>
+  type: Set<Type>
+}
+
+const selectedTags = ref<SelectedTags>({
   origin: new Set(),
   type: new Set(),
 })
 
-function toggleTag(category: string, tag: string) {
-  const set = selectedTags.value[category]
+function toggleTag<T extends Origin | Type>(category: Category, tag: T) {
+  const set = selectedTags.value[category] as Set<T>
+
   if (set.has(tag)) {
     set.delete(tag)
   } else {
     set.add(tag)
   }
+
   selectedTags.value = {
     ...selectedTags.value,
     [category]: new Set(set),
   }
 }
 
-const filteredMovies = computed(() => {
-  return movies.value.filter((movie) => {
-    const movieTags = Object.fromEntries(movie.tags);
-
-    return Object.entries(selectedTags.value).every(([category, tagSet]) => {
-      if (tagSet.size === 0) return true;
-      return tagSet.has(movieTags[category]);
-    });
-  });
-});
+const filteredMovies = computed(() =>
+  movies.value.filter(movie =>
+    (!selectedTags.value.origin.size || selectedTags.value.origin.has(movie.origin)) &&
+    (!selectedTags.value.type.size || selectedTags.value.type.has(movie.type))
+  )
+)
 </script>
 
 <template>
@@ -85,7 +79,7 @@ const filteredMovies = computed(() => {
             @click="toggleTag(category, tag)"
             :class="['filters__category__tag', tag, { selected: selectedTags[category].has(tag) }]"
           >
-            {{ tag }}
+            {{ tagLabels[tag] }}
           </button>
         </div>
       </div>
@@ -102,11 +96,12 @@ const filteredMovies = computed(() => {
         <div class="movies-list__item__title">{{ movie.title }}</div>
         <div class="movies-list__item__tags">
           <span
-            v-for="tag in movie.tags.map(([_, val]) => val)"
+            v-for="tag in [movie.origin, movie.type]"
             :key="tag"
             class="movies-list__item__tag"
             :class="tag"
-            >{{ tag }}
+            >
+            {{ tagLabels[tag] }}
           </span>
         </div>
       </li>
@@ -152,19 +147,19 @@ $color-series: #d500f9;
       background-color: $color-main-text;
       cursor: pointer;
 
-      &.Российские {
+      &.Ru {
         color: $color-russian;
       }
 
-      &.Зарубежные {
+      &.Foreign {
         color: $color-foreign;
       }
 
-      &.Фильмы {
+      &.Movie {
         color: $color-movie;
       }
 
-      &.Сериалы {
+      &.Series {
         color: $color-series;
       }
 
@@ -172,19 +167,19 @@ $color-series: #d500f9;
       &:hover {
         color: $color-main-text;
 
-        &.Российские {
+        &.Ru {
           background-color: $color-russian;
         }
 
-        &.Зарубежные {
+        &.Foreign {
           background-color: $color-foreign;
         }
 
-        &.Фильмы {
+        &.Movie {
           background-color: $color-movie;
         }
 
-        &.Сериалы {
+        &.Series {
           background-color: $color-series;
         }
       }
@@ -235,19 +230,19 @@ $color-series: #d500f9;
         font-size: 12px;
       }
 
-      &.Российские {
+      &.Ru {
         color: $color-russian;
       }
 
-      &.Зарубежные {
+      &.Foreign {
         color: $color-foreign;
       }
 
-      &.Фильмы {
+      &.Movie {
         color: $color-movie;
       }
 
-      &.Сериалы {
+      &.Series {
         color: $color-series;
       }
 
