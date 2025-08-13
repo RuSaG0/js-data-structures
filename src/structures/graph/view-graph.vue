@@ -31,7 +31,7 @@ import FriendGraphD3 from './examples/friend-graph-d3.vue'
 
     <template #example1>
       <p>
-        Рассмотрим пример, визуализации связей в социальной сетиЯ
+        Рассмотрим пример, визуализации связей в социальной сети.
       </p>
       <friend-graph-d3 />
     </template>

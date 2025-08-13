@@ -67,7 +67,7 @@ watch(
       </router-link>
     </aside>
 
-    <div class="content container">
+    <div id="content" class="content container">
       <RouterView />
     </div>
 
