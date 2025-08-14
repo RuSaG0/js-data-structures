@@ -13,6 +13,14 @@ import { ERoutes } from '@/router/routes.ts'
 
 const router = createRouter({
   history: createWebHashHistory('/js-data-structures/'),
+  scrollBehavior() {
+    const content = document.getElementById('content')
+    if (content) {
+      content.scrollTop = 0
+    }
+
+    return { top: 0 }
+  },
   routes: [
     {
       path: '/',
